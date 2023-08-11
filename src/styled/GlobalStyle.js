@@ -16,5 +16,10 @@ const GlobalStyle = createGlobalStyle`
      font-family: 'ShiftyNotes';
      src: url("/fonts/ShiftyNotesRegular.ttf") format("truetype");
   }
+
+  @font-face {
+     font-family: 'AustieBost';
+     src: url("/fonts/AustieBostChunky.ttf") format("truetype");
+  }
 `;
 export default GlobalStyle;

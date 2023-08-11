@@ -105,8 +105,6 @@ const MiauInfo = styled.div`
 	width: 370px;
 	height: 165px;
 
-	padding-bottom: 5px;
-
 	position: absolute;
 	top: 5px;
 	left: 190px;
@@ -142,8 +140,10 @@ const MiauDescription = styled.div`
 	overflow-y: scroll;
 
 	p {
-		font-family: "shiftyNotes";
-		font-size: 18px;
+		font-family: "AustieBost";
+		font-size: 16px;
+
+		line-height: 18px;
 
 		color: #fcf6e3;
 	}

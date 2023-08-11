@@ -25,7 +25,56 @@ export default function Home() {
 									})}
 								</MiausList>
 
-								<MiauVisualizer></MiauVisualizer>
+								<MiauVisualizer>
+									<ImageContainer>
+										<img
+											src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRLKAdWj_0-N6Jgt46u_s5SQaypaHiFQ5-bIw&usqp=CAU"
+											alt="cat"
+										/>
+
+										<h2>monday</h2>
+									</ImageContainer>
+
+									<TagContainer>
+										<Tag>
+											<p>GATO</p>
+										</Tag>{" "}
+										<Tag>
+											<p>Delicioso</p>
+										</Tag>
+										<Tag>
+											<p>Saboroso</p>
+										</Tag>
+										<Tag>
+											<p>Gostoso</p>
+										</Tag>
+										<Tag>
+											<p>Gatoso</p>
+										</Tag>
+										<Tag>
+											<p>Chiwa</p>
+										</Tag>
+										<Tag>
+											<p>monday</p>
+										</Tag>
+									</TagContainer>
+									<VisualizerDescription>
+										<p>Dono: Tuesday José da Silva Jesus Almeida Megazord</p>
+										<p>Telefone: 4002-8922</p>
+										<p>
+											Monday left me broken Tuesday, I was through with hoping
+											Wednesday, my empty arms were open Thursday, waiting for
+											love, waiting for loveMonday left me broken Tuesday, I was
+											through with hoping Wednesday, my empty arms were open
+											Thursday, waiting for love, waiting for loveMonday left me
+											broken Tuesday, I was through with hoping Wednesday, my
+											empty arms were open Thursday, waiting for love, waiting
+											for loveMonday left me broken Tuesday, I was through with
+											hoping Wednesday, my empty arms were open Thursday,
+											waiting for love, waiting for love
+										</p>
+									</VisualizerDescription>
+								</MiauVisualizer>
 							</HomeContainer>
 						</ElementsContainer>
 					</PseudoShadow>
@@ -77,9 +126,124 @@ const MiauVisualizer = styled.div`
 	flex-direction: column;
 
 	padding: 8px;
+	
+`;
+
+const ImageContainer = styled.div`
+	width: 100%;
+	height: fit-content;
+
+	border-radius: 28px;
+
+	position: relative;
+	
 
 	img {
 		width: 100%;
+		height: 425px;
 		border-radius: 28px;
+		margin-bottom: 10px;
+	}
+
+	h2 {
+		width: fit-content;
+		padding: 8px;
+
+		position: absolute;
+		bottom: -5px;
+		left: 10px;
+
+		font-family: "Motley";
+		font-size: 32px;
+
+		background-color: #7D4F4F;
+		color: #fcf6e3;
+
+		border-radius: 28px;
+
+		transition: all 0.5s ease-out;
+	}
+
+	&:hover {
+		h2 {
+			background-color: transparent;
+			color: transparent;
+			transition: all 0.5s ease-out;
+		}
+	}
+`;
+
+const VisualizerDescription = styled.div`
+	width: 100%;
+	height: 200px;
+
+	padding: 5px;
+
+	border-radius: 28px;
+
+	overflow-x: scroll;
+
+	p {
+		font-family: "AustieBost";
+		font-size: 32px;
+
+		margin-bottom: 10px;
+
+		background-color: #9b6162;
+		border-radius: 16px;
+
+		padding: 10px;
+
+		line-height: 38px;
+
+		color: #fcf6e3;
+	}
+
+	p:last-child {
+		font-family: "AustieBost";
+		font-size: 22px;
+
+		line-height: 28px;
+
+		color: #fcf6e3;
+	}
+`;
+
+const TagContainer = styled.div`
+	width: 100%;
+	height: fit-content;
+
+	display: flex;
+	flex-wrap: wrap;
+
+	overflow-y: scroll;
+
+	margin-bottom: 10px;
+
+	div:not(:last-child) {
+		margin-right: 0px;
+	}
+`;
+
+const Tag = styled.div`
+	width: fit-content;
+	height: 38px;
+
+	padding: 2px;
+
+	margin: 3px;
+
+	background-color: #fcf6e3;
+	border-radius: 20px;
+
+	flex-shrink: 0;
+
+	p {
+		padding: 3px;
+		font-family: "Motley";
+		font-size: 28px;
+
+		color: #7d4f4f;
+		border-radius: 12px;
 	}
 `;
