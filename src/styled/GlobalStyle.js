@@ -4,6 +4,7 @@ const GlobalStyle = createGlobalStyle`
 
 *{
  box-sizing: border-box;
+ flex-shrink: 0;
 }
 
  @font-face {

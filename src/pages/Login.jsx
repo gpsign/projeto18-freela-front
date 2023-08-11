@@ -1,5 +1,10 @@
-import CentralizerContainer from "../styled/CentralizerContainer";
-import { Shadow, PseudoShadow, InputBox, StyledLink } from "../styled/InputBox";
+import {
+	CentralizerContainer,
+	Shadow,
+	PseudoShadow,
+	ElementsContainer,
+	StyledLink
+} from "../styled/CommonStyles";
 import { useState } from "react";
 
 export default function Login() {
@@ -9,9 +14,9 @@ export default function Login() {
 	return (
 		<CentralizerContainer>
 			<h1>Ultimate Fashion Cats</h1>
-			<Shadow width={"450"} heigth={"390"}>
+			<Shadow width={"450px"} height={"390px"}>
 				<PseudoShadow>
-					<InputBox>
+					<ElementsContainer>
 						<form autoComplete="on">
 							<h2>LOGIN</h2>
 							<input
@@ -33,7 +38,7 @@ export default function Login() {
 						<StyledLink to={"/signup"}>
 							Não tem uma conta? <span className="underline">Cadastre-se!</span>
 						</StyledLink>
-					</InputBox>
+					</ElementsContainer>
 				</PseudoShadow>
 			</Shadow>
 		</CentralizerContainer>

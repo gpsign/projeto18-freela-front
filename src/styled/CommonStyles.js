@@ -1,7 +1,7 @@
 import { styled } from "styled-components";
 import { Link } from "react-router-dom";
 
-const InputBox = styled.div`
+const ElementsContainer = styled.div`
 	width: 100%;
 	height: 100%;
 
@@ -104,8 +104,8 @@ const PseudoShadow = styled.div`
 `;
 
 const Shadow = styled.div`
-	width: ${({ width }) => width}px;
-	height: ${({ heigth }) => heigth}px;
+	width: ${({ width }) => width};
+	height: ${({ height }) => height};
 
 	position: relative;
 	z-index: 1;
@@ -131,4 +131,34 @@ const StyledLink = styled(Link)`
 	}
 `;
 
-export { InputBox, Shadow, PseudoShadow, StyledLink };
+const CentralizerContainer = styled.div`
+	width: 100vw;
+	height: 100vh;
+
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+
+	overflow-y: scroll;
+	overflow-x: hidden;
+
+	margin: auto;
+
+	background-color: #fcf6e3;
+
+	h1 {
+		font-family: "Motley";
+		font-size: 80px;
+
+		margin-top: 50px;
+		margin-bottom: 60px;
+	}
+`;
+
+export {
+	ElementsContainer,
+	Shadow,
+	PseudoShadow,
+	StyledLink,
+	CentralizerContainer,
+};
