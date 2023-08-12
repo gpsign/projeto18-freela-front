@@ -107,6 +107,9 @@ const Shadow = styled.div`
 	width: ${({ width }) => width};
 	height: ${({ height }) => height};
 
+	margin-left: 10px;
+	margin-right: 10px;
+
 	position: relative;
 	z-index: 1;
 
@@ -137,11 +140,11 @@ const CentralizerContainer = styled.div`
 
 	display: flex;
 	align-items: center;
-	justify-content: space-around;
+	justify-content: center;
 
-	padding-left: 360px;
-	padding-right: 360px;
-	padding-top: 80px;
+	padding-left: auto;
+	padding-right: auto;
+	padding-top: 110px;
 
 	overflow-y: hidden;
 	overflow-x: hidden;

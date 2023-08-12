@@ -123,7 +123,7 @@ const MiauInfo = styled.div`
 		color: #fcf6e3;
 
 		margin: 5px !important;
-        white-space:nowrap; 
+        white-space: nowrap; 
 	}
 `;
 
@@ -135,7 +135,6 @@ const MiauDescription = styled.div`
 
 	background-color: #905B5B;
 	border-radius: 14px;
-	flex-shrink: 0;
 
 	overflow-y: scroll;
 

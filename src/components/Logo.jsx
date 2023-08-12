@@ -8,10 +8,14 @@ const LogoName = styled.h1`
 	font-family: "Motley";
 	font-size: 80px;
 
-	margin-top: -80px;
+	margin-top: -110px;
 	margin-bottom: 60px;
 
     position: fixed;
     top: 200px;
-    left : 28vw;
+    left : auto;
+
+    white-space: normal;
+    
+    text-align: center; 
 `;

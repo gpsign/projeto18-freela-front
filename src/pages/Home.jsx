@@ -7,9 +7,11 @@ import {
 } from "../styled/CommonStyles";
 import { styled } from "styled-components";
 import MiauCard from "../components/MiauCard";
+import { useState } from "react";
 
 export default function Home() {
 	const testArr = [1, 2, 3, 4, 5, 6, 7, 8];
+	const [showAddMiau, setShowAddMiau] = useState(true);
 
 	return (
 		<>
@@ -84,6 +86,11 @@ export default function Home() {
 						</ElementsContainer>
 					</PseudoShadow>
 				</Shadow>
+				<AddMiauButton>
+					<div>
+						<p> Miau +</p>
+					</div>
+				</AddMiauButton>
 			</CentralizerContainer>
 		</>
 	);
@@ -95,7 +102,7 @@ const MiausList = styled.ul`
 
 	padding: 15px;
 
-	background-color: #9B6162;
+	background-color: #9b6162;
 	border-radius: 28px;
 
 	display: flex;
@@ -114,7 +121,7 @@ const MiauVisualizer = styled.div`
 	width: 550px;
 	height: 100%;
 
-	background-color: #9B6162;
+	background-color: #9b6162;
 	border-radius: 28px;
 
 	display: flex;
@@ -150,7 +157,7 @@ const ImageContainer = styled.div`
 		font-family: "Motley";
 		font-size: 32px;
 
-		background-color: #9B6162;
+		background-color: #9b6162;
 		color: #fcf6e3;
 
 		border-radius: 28px;
@@ -188,7 +195,7 @@ const VisualizerDescription = styled.div`
 
 		margin-bottom: 10px;
 
-		background-color: #7D4F4F;
+		background-color: #7d4f4f;
 		border-radius: 16px;
 
 		padding: 10px;
@@ -244,5 +251,52 @@ const Tag = styled.div`
 
 		color: #7d4f4f;
 		border-radius: 12px;
+	}
+`;
+
+const AddMiauButton = styled.button`
+	width: 240px;
+	height: 80px;
+
+	position: fixed;
+	bottom: 5%;
+	right: 3%;
+
+	border-radius: 80px;
+	background-color: #a2dbbc;
+
+	outline: none;
+	border: none;
+
+	overflow-x: hidden;
+
+	cursor: pointer;
+
+	transition: all 0.5s ease-out;
+
+	filter: brightness(1.1);
+
+	div {
+		position: relative;
+	}
+
+	p {
+		font-family: "AustieBost";
+		font-size: 64px;
+
+		white-space: nowrap;
+
+		position: absolute;
+		bottom: -38px;
+		right: 23px;
+	}
+
+	&:not(:hover) {
+		width: 80px;
+		filter: brightness(1);
+	}
+
+	&:active {
+		transform: scale(0.9);
 	}
 `;
