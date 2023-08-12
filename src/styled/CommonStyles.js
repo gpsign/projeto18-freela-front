@@ -139,8 +139,8 @@ const CentralizerContainer = styled.div`
 	align-items: center;
 	justify-content: space-around;
 
-	padding-left: 325px;
-	padding-right: 325px;
+	padding-left: 360px;
+	padding-right: 360px;
 	padding-top: 80px;
 
 	overflow-y: hidden;

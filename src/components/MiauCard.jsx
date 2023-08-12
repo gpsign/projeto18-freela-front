@@ -73,7 +73,7 @@ const MiauContent = styled.li`
 
 	position: relative;
 
-	background-color: #9b6162;
+	background-color: #7D4F4F;
 	border-radius: 14px;
 	flex-shrink: 0;
 
@@ -133,7 +133,7 @@ const MiauDescription = styled.div`
 
 	padding: 8px;
 
-	background-color: #7d4f4f;
+	background-color: #905B5B;
 	border-radius: 14px;
 	flex-shrink: 0;
 

@@ -28,7 +28,7 @@ export default function Home() {
 					</PseudoShadow>
 				</Shadow>
 
-				<Shadow width={"600px"} height={"800px"}>
+				<Shadow width={"550px"} height={"800px"}>
 					<PseudoShadow>
 						<ElementsContainer>
 							<MiauVisualizer>
@@ -84,85 +84,10 @@ export default function Home() {
 						</ElementsContainer>
 					</PseudoShadow>
 				</Shadow>
-
-				{/* <Shadow width={"1200px"} height={"800px"}>
-					<PseudoShadow>
-						<ElementsContainer>
-							<HomeContainer>
-								<MiausList>
-									{testArr.map((t) => {
-										return <MiauCard key={t} />;
-									})}
-								</MiausList>
-
-								<MiauVisualizer>
-									<ImageContainer>
-										<img
-											src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRLKAdWj_0-N6Jgt46u_s5SQaypaHiFQ5-bIw&usqp=CAU"
-											alt="cat"
-										/>
-
-										<h2>monday</h2>
-									</ImageContainer>
-
-									<TagContainer>
-										<Tag>
-											<p>GATO</p>
-										</Tag>{" "}
-										<Tag>
-											<p>Delicioso</p>
-										</Tag>
-										<Tag>
-											<p>Saboroso</p>
-										</Tag>
-										<Tag>
-											<p>Gostoso</p>
-										</Tag>
-										<Tag>
-											<p>Gatoso</p>
-										</Tag>
-										<Tag>
-											<p>Chiwa</p>
-										</Tag>
-										<Tag>
-											<p>monday</p>
-										</Tag>
-									</TagContainer>
-									<VisualizerDescription>
-										<p>Dono: Tuesday José da Silva Jesus Almeida Megazord</p>
-										<p>Telefone: 4002-8922</p>
-										<p>
-											Monday left me broken Tuesday, I was through with hoping
-											Wednesday, my empty arms were open Thursday, waiting for
-											love, waiting for loveMonday left me broken Tuesday, I was
-											through with hoping Wednesday, my empty arms were open
-											Thursday, waiting for love, waiting for loveMonday left me
-											broken Tuesday, I was through with hoping Wednesday, my
-											empty arms were open Thursday, waiting for love, waiting
-											for loveMonday left me broken Tuesday, I was through with
-											hoping Wednesday, my empty arms were open Thursday,
-											waiting for love, waiting for love
-										</p>
-									</VisualizerDescription>
-								</MiauVisualizer>
-							</HomeContainer>
-						</ElementsContainer>
-					</PseudoShadow>
-				</Shadow> */}
 			</CentralizerContainer>
 		</>
 	);
 }
-
-const HomeContainer = styled.div`
-	width: 100%;
-	height: 100%;
-
-	padding: 20px;
-
-	display: flex;
-	justify-content: space-between;
-`;
 
 const MiausList = styled.ul`
 	width: 600px;
@@ -170,7 +95,7 @@ const MiausList = styled.ul`
 
 	padding: 15px;
 
-	background-color: #7d4f4f;
+	background-color: #9B6162;
 	border-radius: 28px;
 
 	display: flex;
@@ -189,7 +114,7 @@ const MiauVisualizer = styled.div`
 	width: 550px;
 	height: 100%;
 
-	background-color: #7d4f4f;
+	background-color: #9B6162;
 	border-radius: 28px;
 
 	display: flex;
@@ -225,7 +150,7 @@ const ImageContainer = styled.div`
 		font-family: "Motley";
 		font-size: 32px;
 
-		background-color: #7d4f4f;
+		background-color: #9B6162;
 		color: #fcf6e3;
 
 		border-radius: 28px;
@@ -241,7 +166,7 @@ const ImageContainer = styled.div`
 		}
 
 		img {
-			transform: scale(1.009);
+			transform: scale(1.04);
 			transition: all 0.5s ease-out;
 		}
 	}
@@ -249,7 +174,7 @@ const ImageContainer = styled.div`
 
 const VisualizerDescription = styled.div`
 	width: 100%;
-	height: 200px;
+	height: 257px;
 
 	padding: 5px;
 
@@ -263,7 +188,7 @@ const VisualizerDescription = styled.div`
 
 		margin-bottom: 10px;
 
-		background-color: #9b6162;
+		background-color: #7D4F4F;
 		border-radius: 16px;
 
 		padding: 10px;
