@@ -6,6 +6,7 @@ import {
 	StyledLink
 } from "../styled/CommonStyles";
 import { useState } from "react";
+import Logo from "../components/Logo";
 
 export default function SignUp() {
 	const [nome, setNome] = useState("");
@@ -17,7 +18,7 @@ export default function SignUp() {
 
 	return (
 		<CentralizerContainer>
-			<h1>Ultimate Fashion Cats</h1>
+			<Logo />
 			<Shadow width={"450px"} height={"550px"}>
 				<PseudoShadow>
 					<ElementsContainer>

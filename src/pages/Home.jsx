@@ -15,7 +15,77 @@ export default function Home() {
 		<>
 			<CentralizerContainer>
 				<Header />
-				<Shadow width={"1200px"} height={"800px"}>
+
+				<Shadow width={"600px"} height={"800px"}>
+					<PseudoShadow>
+						<ElementsContainer>
+							<MiausList>
+								{testArr.map((t) => {
+									return <MiauCard key={t} />;
+								})}
+							</MiausList>
+						</ElementsContainer>
+					</PseudoShadow>
+				</Shadow>
+
+				<Shadow width={"600px"} height={"800px"}>
+					<PseudoShadow>
+						<ElementsContainer>
+							<MiauVisualizer>
+								<ImageContainer>
+									<img
+										src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRLKAdWj_0-N6Jgt46u_s5SQaypaHiFQ5-bIw&usqp=CAU"
+										alt="cat"
+									/>
+
+									<h2>monday</h2>
+								</ImageContainer>
+
+								<TagContainer>
+									<Tag>
+										<p>GATO</p>
+									</Tag>{" "}
+									<Tag>
+										<p>Delicioso</p>
+									</Tag>
+									<Tag>
+										<p>Saboroso</p>
+									</Tag>
+									<Tag>
+										<p>Gostoso</p>
+									</Tag>
+									<Tag>
+										<p>Gatoso</p>
+									</Tag>
+									<Tag>
+										<p>Chiwa</p>
+									</Tag>
+									<Tag>
+										<p>monday</p>
+									</Tag>
+								</TagContainer>
+								<VisualizerDescription>
+									<p>Dono: Tuesday José da Silva Jesus Almeida Megazord</p>
+									<p>Telefone: 4002-8922</p>
+									<p>
+										Monday left me broken Tuesday, I was through with hoping
+										Wednesday, my empty arms were open Thursday, waiting for
+										love, waiting for loveMonday left me broken Tuesday, I was
+										through with hoping Wednesday, my empty arms were open
+										Thursday, waiting for love, waiting for loveMonday left me
+										broken Tuesday, I was through with hoping Wednesday, my
+										empty arms were open Thursday, waiting for love, waiting for
+										loveMonday left me broken Tuesday, I was through with hoping
+										Wednesday, my empty arms were open Thursday, waiting for
+										love, waiting for love
+									</p>
+								</VisualizerDescription>
+							</MiauVisualizer>
+						</ElementsContainer>
+					</PseudoShadow>
+				</Shadow>
+
+				{/* <Shadow width={"1200px"} height={"800px"}>
 					<PseudoShadow>
 						<ElementsContainer>
 							<HomeContainer>
@@ -78,7 +148,7 @@ export default function Home() {
 							</HomeContainer>
 						</ElementsContainer>
 					</PseudoShadow>
-				</Shadow>
+				</Shadow> */}
 			</CentralizerContainer>
 		</>
 	);
@@ -126,7 +196,6 @@ const MiauVisualizer = styled.div`
 	flex-direction: column;
 
 	padding: 8px;
-	
 `;
 
 const ImageContainer = styled.div`
@@ -136,13 +205,13 @@ const ImageContainer = styled.div`
 	border-radius: 28px;
 
 	position: relative;
-	
 
 	img {
 		width: 100%;
 		height: 425px;
 		border-radius: 28px;
 		margin-bottom: 10px;
+		transition: all 0.5s ease-out;
 	}
 
 	h2 {
@@ -156,7 +225,7 @@ const ImageContainer = styled.div`
 		font-family: "Motley";
 		font-size: 32px;
 
-		background-color: #7D4F4F;
+		background-color: #7d4f4f;
 		color: #fcf6e3;
 
 		border-radius: 28px;
@@ -168,6 +237,11 @@ const ImageContainer = styled.div`
 		h2 {
 			background-color: transparent;
 			color: transparent;
+			transition: all 0.5s ease-out;
+		}
+
+		img {
+			transform: scale(1.009);
 			transition: all 0.5s ease-out;
 		}
 	}

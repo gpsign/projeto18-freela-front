@@ -2,7 +2,7 @@ import { styled } from "styled-components";
 
 export default function Header() {
 	return (
-		<>
+		<Position>
 			<Shadow width={"100vw"} height={"80px"}>
 				<PseudoShadow>
 					<ElementsContainer>
@@ -13,9 +13,15 @@ export default function Header() {
 					</ElementsContainer>
 				</PseudoShadow>
 			</Shadow>
-		</>
+		</Position>
 	);
 }
+
+const Position = styled.div`
+	position: absolute;
+	top: 0;
+	left: 0;
+`;
 
 const HeaderContent = styled.div`
 	width: 100%;

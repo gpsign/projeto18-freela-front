@@ -136,23 +136,19 @@ const CentralizerContainer = styled.div`
 	height: 100vh;
 
 	display: flex;
-	flex-direction: column;
 	align-items: center;
+	justify-content: space-around;
 
-	overflow-y: scroll;
+	padding-left: 325px;
+	padding-right: 325px;
+	padding-top: 80px;
+
+	overflow-y: hidden;
 	overflow-x: hidden;
 
 	margin: auto;
 
 	background-color: #fcf6e3;
-
-	h1 {
-		font-family: "Motley";
-		font-size: 80px;
-
-		margin-top: 50px;
-		margin-bottom: 60px;
-	}
 `;
 
 export {

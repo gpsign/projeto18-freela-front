@@ -3,9 +3,10 @@ import {
 	Shadow,
 	PseudoShadow,
 	ElementsContainer,
-	StyledLink
+	StyledLink,
 } from "../styled/CommonStyles";
 import { useState } from "react";
+import Logo from "../components/Logo";
 
 export default function Login() {
 	const [email, setEmail] = useState("");
@@ -13,7 +14,7 @@ export default function Login() {
 
 	return (
 		<CentralizerContainer>
-			<h1>Ultimate Fashion Cats</h1>
+			<Logo />
 			<Shadow width={"450px"} height={"390px"}>
 				<PseudoShadow>
 					<ElementsContainer>
