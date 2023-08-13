@@ -85,7 +85,7 @@ const Shadow = styled.div`
 	height: 80px;
 
 	position: relative;
-	z-index: 1;
+	z-index: 4;
 
 	background-color: #dbc1ac;
 

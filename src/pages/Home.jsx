@@ -10,14 +10,43 @@ import MiauCard from "../components/MiauCard";
 import { useState } from "react";
 
 export default function Home() {
-	const testArr = [1, 2, 3, 4, 5, 6, 7, 8];
-	const [showAddMiau, setShowAddMiau] = useState(true);
+	const testArr = [1];
+	const [showAddMiau, setShowAddMiau] = useState("true");
 
 	return (
 		<>
 			<CentralizerContainer>
 				<Header />
+				<ScreenDarknessContainer show={showAddMiau}>
+					{showAddMiau === "true" && (
+						<Shadow width={"450px"} height={"680px"}>
+							<PseudoShadow>
+								<ElementsContainer>
+									<h2>Adicionar seu Miau</h2>
 
+									<form>
+										<input placeholder="Nome do Miau" />
+										<input placeholder="URL da foto do modelo" />
+										<textarea placeholder="Tags (Separe por vírgulas!)"></textarea>
+										<textarea placeholder="Descrição do Miau" />
+									</form>
+
+									<div className="buttonContainer">
+										<button>Adicionar!</button>
+										<button
+											className="Close"
+											onClick={() => {
+												setShowAddMiau("false");
+											}}
+										>
+											<p>X</p>
+										</button>
+									</div>
+								</ElementsContainer>
+							</PseudoShadow>
+						</Shadow>
+					)}
+				</ScreenDarknessContainer>
 				<Shadow width={"600px"} height={"800px"}>
 					<PseudoShadow>
 						<ElementsContainer>
@@ -86,7 +115,11 @@ export default function Home() {
 						</ElementsContainer>
 					</PseudoShadow>
 				</Shadow>
-				<AddMiauButton>
+				<AddMiauButton
+					onClick={() => {
+						setShowAddMiau("true");
+					}}
+				>
 					<div>
 						<p> Miau +</p>
 					</div>
@@ -299,4 +332,25 @@ const AddMiauButton = styled.button`
 	&:active {
 		transform: scale(0.9);
 	}
+`;
+
+const ScreenDarknessContainer = styled.div`
+	width: 100vw;
+	height: 100vh;
+
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 5;
+
+	display: ${({ show }) => (show === "true" ? "flex;" : "flex;")};
+	justify-content: center;
+	align-items: center;
+
+	background-color: ${({ show }) =>
+		show === "true" ? "rgba(0, 0, 0, 0.6);" : "rgba(0, 0, 0, 0);"};
+
+	pointer-events: ${({ show }) => (show === "true" ? "auto;" : "none;")};
+
+	transition: all 0.2s ease-out;
 `;

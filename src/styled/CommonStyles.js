@@ -50,6 +50,28 @@ const ElementsContainer = styled.div`
 		}
 	}
 
+	textarea {
+		width: 400px;
+		height: 140px;
+
+		border: none;
+		border-radius: 12px;
+		outline: none;
+
+		margin: 0px 25px 25px 20px;
+		padding-left: 8px;
+
+		font-size: 28px;
+		letter-spacing: 2px;
+
+		resize: none;
+
+		&::placeholder {
+			font-family: "ShiftyNotes";
+			font-size: 28px;
+		}
+	}
+
 	button {
 		width: 200px;
 		height: 50px;
@@ -61,10 +83,6 @@ const ElementsContainer = styled.div`
 
 		font-family: "ShiftyNotes";
 		font-size: 28px;
-		letter-spacing: 2px;
-
-		margin-left: 125px;
-		margin-top: 4px;
 
 		transition: filter 0.5s, transform 0.1s ease-out;
 
@@ -81,11 +99,50 @@ const ElementsContainer = styled.div`
 		}
 	}
 
+	.Close {
+		width: 50px;
+		height: 50px;
+
+		border-radius: 100%;
+		background-color: #e75353;
+
+		outline: none;
+		border: none;
+
+		cursor: pointer;
+
+		transition: all 0.5s ease-out;
+
+		margin-left: 20px;
+
+		filter: brightness(1.1);
+
+		p {
+			font-family: "motley";
+			font-size: 32px;
+			margin-left: 2px;
+		}
+
+		&:not(:hover) {
+			filter: brightness(1);
+		}
+
+		&:active {
+			transform: scale(0.95);
+		}
+	}
+
 	input:-webkit-autofill,
 	input:-webkit-autofill:hover,
 	input:-webkit-autofill:focus,
 	input:-webkit-autofill:active {
 		-webkit-box-shadow: 0 0 0 30px white inset !important;
+	}
+
+	.buttonContainer {
+		display: flex;
+		justify-content: center;
+		align-items: center;
 	}
 `;
 
