@@ -12,6 +12,7 @@ const ElementsContainer = styled.div`
 
 	display: flex;
 	flex-direction: column;
+	justify-content: center;
 
 	background-color: #9b6162;
 
@@ -84,6 +85,8 @@ const ElementsContainer = styled.div`
 		font-family: "ShiftyNotes";
 		font-size: 28px;
 
+		margin-left: 120px;
+
 		transition: filter 0.5s, transform 0.1s ease-out;
 
 		&:hover {
@@ -140,6 +143,7 @@ const ElementsContainer = styled.div`
 	}
 
 	.buttonContainer {
+		width: fit-content;
 		display: flex;
 		justify-content: center;
 		align-items: center;

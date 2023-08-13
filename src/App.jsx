@@ -4,18 +4,21 @@ import Reset from "./styled/Reset";
 import GlobalStyle from "./styled/GlobalStyle";
 import SignUp from "./pages/SignUp";
 import Home from "./pages/Home";
-
+import { LoginDataProvider } from "./context/login";
+ 
 function App() {
 	return (
-		<BrowserRouter>
-			<Reset />
-			<GlobalStyle />
-			<Routes>
-				<Route path="/" element={<Home />}></Route>
-				<Route path="/login" element={<Login />}></Route>
-				<Route path="/signup" element={<SignUp />}></Route>
-			</Routes>
-		</BrowserRouter>
+		<LoginDataProvider>
+			<BrowserRouter>
+				<Reset />
+				<GlobalStyle />
+				<Routes>
+					<Route path="/home" element={<Home />}></Route>
+					<Route path="/" element={<Login />}></Route>
+					<Route path="/signup" element={<SignUp />}></Route>
+				</Routes>
+			</BrowserRouter>
+		</LoginDataProvider>
 	);
 }
 
