@@ -3,7 +3,12 @@ import { useState, createContext } from "react";
 export const LoginDataContext = createContext();
 
 export const LoginDataProvider = ({ children }) => {
-	let lsToken = JSON.parse(localStorage.getItem("user")).token;
+	let storage = localStorage.getItem("user");
+	let lsToken = { token: "null", id: null };
+
+	if (storage != null) {
+		lsToken = JSON.parse().token;
+	}
 
 	const [token, setToken] = useState(lsToken);
 	const [userId, setUserId] = useState(
