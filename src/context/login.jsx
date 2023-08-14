@@ -4,10 +4,13 @@ export const LoginDataContext = createContext();
 
 export const LoginDataProvider = ({ children }) => {
 	let storage = localStorage.getItem("user");
-	let lsToken = { token: "null", id: 0 };
+	let lsToken = { token: "null", id: null };
+
+	console.log(storage);
+
 
 	if (storage === null) {
-		storage = { token: "null", id: 0 };
+		storage = { token: "null", id: null };
 	} else lsToken = JSON.parse(storage).token;
 
 	const [token, setToken] = useState(lsToken);
