@@ -4,16 +4,14 @@ export const LoginDataContext = createContext();
 
 export const LoginDataProvider = ({ children }) => {
 	let storage = localStorage.getItem("user");
-	let lsToken = { token: "null", id: null };
+	let lsToken = { token: "null", id: 0 };
 
 	if (storage === null) {
-		storage = { token: "null", id: null };
+		storage = { token: "null", id: 0 };
 	} else lsToken = JSON.parse(storage).token;
 
 	const [token, setToken] = useState(lsToken);
-	const [userId, setUserId] = useState(
-		JSON.parse(localStorage.getItem("user")).id
-	);
+	const [userId, setUserId] = useState(JSON.parse(storage).id);
 	const [config, setConfig] = useState({
 		headers: {
 			Authorization: `Bearer ${token}`,
