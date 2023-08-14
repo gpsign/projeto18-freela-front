@@ -4,7 +4,7 @@ export const LoginDataContext = createContext();
 
 export const LoginDataProvider = ({ children }) => {
 	let storage = localStorage.getItem("user");
-	let lsToken = { token: "null", id: null };
+	let lsToken = "null";
 
 	if (storage === null) {
 		storage = JSON.stringify({ token: "null", id: null });
