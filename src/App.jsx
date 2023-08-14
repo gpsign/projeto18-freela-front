@@ -4,6 +4,7 @@ import Reset from "./styled/Reset";
 import GlobalStyle from "./styled/GlobalStyle";
 import SignUp from "./pages/SignUp";
 import Home from "./pages/Home";
+import Profile from "./pages/Profile";
 import { LoginDataProvider } from "./context/login";
  
 function App() {
@@ -16,6 +17,7 @@ function App() {
 					<Route path="/home" element={<Home />}></Route>
 					<Route path="/" element={<Login />}></Route>
 					<Route path="/signup" element={<SignUp />}></Route>
+					<Route path="/profile" element={<Profile />}></Route>
 				</Routes>
 			</BrowserRouter>
 		</LoginDataProvider>

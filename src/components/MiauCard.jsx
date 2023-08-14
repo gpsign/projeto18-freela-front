@@ -1,64 +1,60 @@
+import { useContext, useEffect, useState } from "react";
+import axios from "axios";
 import { styled } from "styled-components";
+import { LoginDataContext } from "../context/login";
 
-export default function MiauCard() {
+export default function MiauCard({
+	id,
+	catname,
+	description,
+	url,
+	ownername,
+	number,
+	setClickedMiau,
+}) {
+	const [tags, setTags] = useState([]);
+	const { config } = useContext(LoginDataContext);
+
+	const VITE_API_URL = import.meta.env.VITE_API_URL;
+
+	async function getTags() {
+		const res = await axios.get(`${VITE_API_URL}/tags/${id}`, config);
+		setTags(res.data);
+	}
+
+	useEffect(() => {
+		getTags();
+	}, []);
+
 	return (
-		<MiauContent>
-			<img
-				src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRLKAdWj_0-N6Jgt46u_s5SQaypaHiFQ5-bIw&usqp=CAU"
-				alt="cat"
-			/>
+		<MiauContent
+			onClick={() => {
+				setClickedMiau({
+					id: id,
+					catname: catname,
+					description: description,
+					url: url,
+					ownername: ownername,
+					number: number,
+					tags: tags,
+				});
+			}}
+		>
+			<img src={url} alt={catname} />
 			<MiauInfo>
-				<h1>Monday left me brokeeeneeeee</h1>
+				<h1>{catname}</h1>
 				<MiauDescription>
 					<TagContainer>
-						<Tag>
-							<p>GATO</p>
-						</Tag>{" "}
-						<Tag>
-							<p>Delicioso</p>
-						</Tag>
-						<Tag>
-							<p>Saboroso</p>
-						</Tag>
-						<Tag>
-							<p>Gostoso</p>
-						</Tag>
-						<Tag>
-							<p>Gatoso</p>
-						</Tag>
-						<Tag>
-							<p>Chiwa</p>
-						</Tag>
-						<Tag>
-							<p>monday</p>
-						</Tag>
-						<Tag>
-							<p>GATO</p>
-						</Tag>
-						<Tag>
-							<p>GATO</p>
-						</Tag>
-						<Tag>
-							<p>GATO</p>
-						</Tag>
-						<Tag>
-							<p>GATO</p>
-						</Tag>
-						<Tag>
-							<p>GATO</p>
-						</Tag>
+						{tags &&
+							tags.map((tag, i) => {
+								return (
+									<Tag key={i}>
+										<p>{tag.tag}</p>
+									</Tag>
+								);
+							})}
 					</TagContainer>
-					<p>
-						Monday left me broken Tuesday, I was through with hoping Wednesday,
-						my empty arms were open Thursday, waiting for love, waiting for
-						loveMonday left me broken Tuesday, I was through with hoping
-						Wednesday, my empty arms were open Thursday, waiting for love,
-						waiting for loveMonday left me broken Tuesday, I was through with
-						hoping Wednesday, my empty arms were open Thursday, waiting for
-						love, waiting for loveMonday left me broken Tuesday, I was through
-						with hoping Wednesday, my empty arms were open Thursday, waiting for
-						love, waiting for love
-					</p>
+					<p>{description}</p>
 				</MiauDescription>
 			</MiauInfo>
 		</MiauContent>
@@ -73,7 +69,7 @@ const MiauContent = styled.li`
 
 	position: relative;
 
-	background-color: #7D4F4F;
+	background-color: #7d4f4f;
 	border-radius: 14px;
 	flex-shrink: 0;
 
@@ -114,7 +110,7 @@ const MiauInfo = styled.div`
 	justify-content: space-between;
 	align-items: flex-start;
 
-    overflow-x: hidden;
+	overflow-x: hidden;
 
 	h1 {
 		font-family: "Motley";
@@ -123,7 +119,7 @@ const MiauInfo = styled.div`
 		color: #fcf6e3;
 
 		margin: 5px !important;
-        white-space: nowrap; 
+		white-space: nowrap;
 	}
 `;
 
@@ -133,7 +129,7 @@ const MiauDescription = styled.div`
 
 	padding: 8px;
 
-	background-color: #905B5B;
+	background-color: #905b5b;
 	border-radius: 14px;
 
 	overflow-y: scroll;
@@ -155,9 +151,9 @@ const TagContainer = styled.div`
 	display: flex;
 	flex-wrap: wrap;
 
-    overflow-y: scroll;
+	overflow-y: scroll;
 
-	margin-bottom: 15px;
+	margin-bottom: 1px;
 
 	div:not(:last-child) {
 		margin-right: 0px;
@@ -168,9 +164,9 @@ const Tag = styled.div`
 	width: fit-content;
 	height: 25px;
 
-    padding: 2px;
+	padding: 2px;
 
-    margin: 3px;
+	margin: 3px;
 
 	background-color: #fcf6e3;
 	border-radius: 20px;
@@ -178,7 +174,7 @@ const Tag = styled.div`
 	flex-shrink: 0;
 
 	p {
-        padding: 3px;
+		padding: 3px;
 		font-family: "Motley";
 		font-size: 16px;
 

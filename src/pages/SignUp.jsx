@@ -3,10 +3,14 @@ import {
 	Shadow,
 	PseudoShadow,
 	ElementsContainer,
-	StyledLink
+	StyledLink,
 } from "../styled/CommonStyles";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import Logo from "../components/Logo";
+import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+import axios from "axios";
+import { LoginDataContext } from "../context/login";
 
 export default function SignUp() {
 	const [nome, setNome] = useState("");
@@ -16,14 +20,54 @@ export default function SignUp() {
 	const [senhaNova, setSenhaNova] = useState("");
 	const [confirmaSenha, setConfirmaSenha] = useState("");
 
+	const navigate = useNavigate();
+
+	const { token } = useContext(LoginDataContext);
+
+	const VITE_API_URL = import.meta.env.VITE_API_URL;
+
+	useEffect(() => {
+		if (token !== "null") {
+			navigate("/home");
+		}
+	}, []);
+
+	async function sendSignUpInfo() {
+		if (senhaNova != confirmaSenha) {
+			alert("As senhas estão diferentes");
+			return;
+		}
+
+		const info = {
+			name: nome,
+			number: telefone,
+			cpf: CPF,
+			email: email,
+			password: senhaNova,
+		};
+
+		try {
+			await axios.post(`${VITE_API_URL}/signup`, info);
+			navigate("/");
+		} catch (err) {
+			console.log(err);
+			if (err.response.status == 409) alert("Usuário já cadastrado");
+			else alert("Erro");
+		}
+	}
+
 	return (
 		<CentralizerContainer>
 			<Logo />
-			<Shadow width={"450px"} height={"550px"}>
+			<Shadow width={"450px"} height={"640px"}>
 				<PseudoShadow>
 					<ElementsContainer>
-						<form>
-							<h2>CADASTRO</h2>
+						<form
+							onSubmit={(e) => {
+								e.preventDefault();
+								sendSignUpInfo();
+							}}
+						>
 							<input
 								placeholder="Nome completo"
 								type="text"
@@ -70,7 +114,7 @@ export default function SignUp() {
 							/>
 							<button type="submit">CADASTRAR</button>
 						</form>
-						<StyledLink to={"/login"}>
+						<StyledLink to={"/"}>
 							Já possui uma conta?{" "}
 							<span className="underline">Entre agora!</span>
 						</StyledLink>

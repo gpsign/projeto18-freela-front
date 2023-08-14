@@ -1,6 +1,11 @@
+import { useNavigate } from "react-router-dom";
 import { styled } from "styled-components";
+import { useContext } from "react";
+import { LoginDataContext } from "../context/login";
 
 export default function Header() {
+	const navigate = useNavigate();
+
 	return (
 		<Position>
 			<Shadow width={"100vw"} height={"80px"}>
@@ -8,7 +13,13 @@ export default function Header() {
 					<ElementsContainer>
 						<HeaderContent>
 							<h1>Ultimate Fashion Cats</h1>
-							<h2>Entrar</h2>
+							<h2
+								onClick={() => {
+									navigate("/profile");
+								}}
+							>
+								PERFIL
+							</h2>
 						</HeaderContent>
 					</ElementsContainer>
 				</PseudoShadow>

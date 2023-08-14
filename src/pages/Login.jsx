@@ -10,13 +10,20 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Logo from "../components/Logo";
 import { LoginDataContext } from "../context/login";
+import { useEffect } from "react";
 
 export default function Login() {
 	const [email, setEmail] = useState("");
 	const [senha, setSenha] = useState("");
 
-	const { setToken } = useContext(LoginDataContext);
+	const { token, setToken } = useContext(LoginDataContext);
 	const navigate = useNavigate();
+
+	useEffect(() => {
+		if (token !== "null") {
+			navigate("/home");
+		}
+	}, []);
 
 	const VITE_API_URL = import.meta.env.VITE_API_URL;
 
@@ -27,10 +34,15 @@ export default function Login() {
 		};
 
 		try {
-			const token = await axios.post(`${VITE_API_URL}/login`, info);
-			setToken(token);
+			const newToken = await axios.post(`${VITE_API_URL}/login`, info);
+
+			localStorage.setItem("user", JSON.stringify(newToken.data));
+			setToken(newToken.data.token);
+
+			navigate("/home");
 		} catch (err) {
 			console.log(err);
+
 			if (err.response.status == 401) alert("Senha inválida");
 			else if (err.response.status == 404) alert("Usuário não cadastrado");
 		}
@@ -42,7 +54,13 @@ export default function Login() {
 			<Shadow width={"450px"} height={"390px"}>
 				<PseudoShadow>
 					<ElementsContainer>
-						<form autoComplete="on">
+						<form
+							autoComplete="on"
+							onSubmit={(e) => {
+								e.preventDefault();
+								sendLoginInfo();
+							}}
+						>
 							<h2>LOGIN</h2>
 							<input
 								placeholder="E-mail"
@@ -58,16 +76,7 @@ export default function Login() {
 								onChange={(e) => setSenha(e.target.value)}
 								required
 							/>
-							<button
-								type="submit"
-								onClick={(e) => {
-									e.preventDefault();
-									sendLoginInfo();
-									navigate("/home");
-								}}
-							>
-								ENTRAR
-							</button>
+							<button type="submit">ENTRAR</button>
 						</form>
 						<StyledLink to={"/signup"}>
 							Não tem uma conta? <span className="underline">Cadastre-se!</span>

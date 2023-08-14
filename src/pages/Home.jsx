@@ -7,11 +7,63 @@ import {
 } from "../styled/CommonStyles";
 import { styled } from "styled-components";
 import MiauCard from "../components/MiauCard";
-import { useState } from "react";
+import MiauVisualizer from "../components/MiauVisualizer";
+import { useState, useEffect, useContext } from "react";
+import { useNavigate } from "react-router-dom";
+import { LoginDataContext } from "../context/login";
+import axios from "axios";
 
 export default function Home() {
-	const testArr = [1];
-	const [showAddMiau, setShowAddMiau] = useState("true");
+	const [showAddMiau, setShowAddMiau] = useState("false");
+	const [miausList, setMiausList] = useState([]);
+	const [clickedMiau, setClickedMiau] = useState({});
+
+	const [newMiauName, setNewMiauName] = useState("");
+	const [newMiauUrl, setNewMiauUrl] = useState("");
+	const [newMiauTags, setNewMiauTags] = useState("");
+	const [newMiauDescription, setNewMiauDescription] = useState("");
+
+	const navigate = useNavigate();
+
+	const { token, config, userId } = useContext(LoginDataContext);
+
+	const VITE_API_URL = import.meta.env.VITE_API_URL;
+
+	async function updateList() {
+		try {
+			const res = await axios.get(`${VITE_API_URL}/home`, config);
+			setMiausList(res.data);
+		} catch (err) {
+			console.log(err);
+		}
+	}
+
+	async function submitMiau() {
+		const newMiau = {
+			ownerId: userId,
+			name: newMiauName,
+			url: newMiauUrl,
+			description: newMiauDescription,
+		};
+
+		try {
+			const res = await axios.post(`${VITE_API_URL}/miau`, newMiau, config);
+			console.log(newMiau);
+			if (res.status === 201) {
+				setShowAddMiau("false");
+			}
+		} catch (err) {
+			console.log(err);
+		}
+	}
+
+	useEffect(() => {
+		if (token === "null") {
+			navigate("/");
+		} else {
+			updateList();
+		}
+	}, [token]);
 
 	return (
 		<>
@@ -24,24 +76,50 @@ export default function Home() {
 								<ElementsContainer>
 									<h2>Adicionar seu Miau</h2>
 
-									<form>
-										<input placeholder="Nome do Miau" />
-										<input placeholder="URL da foto do modelo" />
-										<textarea placeholder="Tags (Separe por vírgulas!)"></textarea>
-										<textarea placeholder="Descrição do Miau" />
-									</form>
-
-									<div className="buttonContainer">
-										<button>Adicionar!</button>
-										<button
-											className="Close"
-											onClick={() => {
-												setShowAddMiau("false");
+									<form
+										onSubmit={(e) => {
+											e.preventDefault();
+											submitMiau();
+										}}
+									>
+										<input
+											placeholder="Nome do Miau"
+											onChange={(e) => {
+												setNewMiauName(e.target.value);
 											}}
-										>
-											<p>X</p>
-										</button>
-									</div>
+											required
+										/>
+										<input
+											placeholder="URL da foto do modelo"
+											onChange={(e) => {
+												setNewMiauUrl(e.target.value);
+											}}
+											required
+										/>
+										<textarea
+											placeholder="Tags (Separe por vírgulas!)"
+											onChange={(e) => {
+												setNewMiauTags(e.target.value);
+											}}
+										/>
+										<textarea
+											placeholder="Descrição do Miau"
+											onChange={(e) => {
+												setNewMiauDescription(e.target.value);
+											}}
+										/>
+										<div className="buttonContainer">
+											<button type="submit">Adicionar!</button>
+											<button
+												className="Close"
+												onClick={() => {
+													setShowAddMiau("false");
+												}}
+											>
+												<p>X</p>
+											</button>
+										</div>
+									</form>
 								</ElementsContainer>
 							</PseudoShadow>
 						</Shadow>
@@ -51,70 +129,36 @@ export default function Home() {
 					<PseudoShadow>
 						<ElementsContainer>
 							<MiausList>
-								{testArr.map((t) => {
-									return <MiauCard key={t} />;
-								})}
+								{miausList &&
+									miausList.map(
+										({
+											catid,
+											catname,
+											description,
+											url,
+											ownername,
+											number,
+										}) => {
+											return (
+												<MiauCard
+													key={catid}
+													id={catid}
+													catname={catname}
+													description={description}
+													url={url}
+													ownername={ownername}
+													number={number}
+													setClickedMiau={setClickedMiau}
+													clickedMiau={clickedMiau}
+												/>
+											);
+										}
+									)}
 							</MiausList>
 						</ElementsContainer>
 					</PseudoShadow>
 				</Shadow>
-
-				<Shadow width={"550px"} height={"800px"}>
-					<PseudoShadow>
-						<ElementsContainer>
-							<MiauVisualizer>
-								<ImageContainer>
-									<img
-										src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRLKAdWj_0-N6Jgt46u_s5SQaypaHiFQ5-bIw&usqp=CAU"
-										alt="cat"
-									/>
-
-									<h2>monday</h2>
-								</ImageContainer>
-
-								<TagContainer>
-									<Tag>
-										<p>GATO</p>
-									</Tag>{" "}
-									<Tag>
-										<p>Delicioso</p>
-									</Tag>
-									<Tag>
-										<p>Saboroso</p>
-									</Tag>
-									<Tag>
-										<p>Gostoso</p>
-									</Tag>
-									<Tag>
-										<p>Gatoso</p>
-									</Tag>
-									<Tag>
-										<p>Chiwa</p>
-									</Tag>
-									<Tag>
-										<p>monday</p>
-									</Tag>
-								</TagContainer>
-								<VisualizerDescription>
-									<p>Dono: Tuesday José da Silva Jesus Almeida Megazord</p>
-									<p>Telefone: 4002-8922</p>
-									<p>
-										Monday left me broken Tuesday, I was through with hoping
-										Wednesday, my empty arms were open Thursday, waiting for
-										love, waiting for loveMonday left me broken Tuesday, I was
-										through with hoping Wednesday, my empty arms were open
-										Thursday, waiting for love, waiting for loveMonday left me
-										broken Tuesday, I was through with hoping Wednesday, my
-										empty arms were open Thursday, waiting for love, waiting for
-										loveMonday left me broken Tuesday, I was through with hoping
-										Wednesday, my empty arms were open Thursday, waiting for
-										love, waiting for love
-									</p>
-								</VisualizerDescription>
-							</MiauVisualizer>
-						</ElementsContainer>
-					</PseudoShadow>
-				</Shadow>
+				<MiauVisualizer clickedMiau={clickedMiau} />
 				<AddMiauButton
 					onClick={() => {
 						setShowAddMiau("true");
@@ -147,143 +191,6 @@ const MiausList = styled.ul`
 
 	li:not(:last-child) {
 		margin-bottom: 15px;
-	}
-`;
-
-const MiauVisualizer = styled.div`
-	width: 550px;
-	height: 100%;
-
-	background-color: #9b6162;
-	border-radius: 28px;
-
-	display: flex;
-	flex-direction: column;
-
-	padding: 8px;
-`;
-
-const ImageContainer = styled.div`
-	width: 100%;
-	height: fit-content;
-
-	border-radius: 28px;
-
-	position: relative;
-
-	img {
-		width: 100%;
-		height: 425px;
-		border-radius: 28px;
-		margin-bottom: 10px;
-		transition: all 0.5s ease-out;
-	}
-
-	h2 {
-		width: fit-content;
-		padding: 8px;
-
-		position: absolute;
-		bottom: -5px;
-		left: 10px;
-
-		font-family: "Motley";
-		font-size: 32px;
-
-		background-color: #9b6162;
-		color: #fcf6e3;
-
-		border-radius: 28px;
-
-		transition: all 0.5s ease-out;
-	}
-
-	&:hover {
-		h2 {
-			background-color: transparent;
-			color: transparent;
-			transition: all 0.5s ease-out;
-		}
-
-		img {
-			transform: scale(1.04);
-			transition: all 0.5s ease-out;
-		}
-	}
-`;
-
-const VisualizerDescription = styled.div`
-	width: 100%;
-	height: 257px;
-
-	padding: 5px;
-
-	border-radius: 28px;
-
-	overflow-x: scroll;
-
-	p {
-		font-family: "AustieBost";
-		font-size: 32px;
-
-		margin-bottom: 10px;
-
-		background-color: #7d4f4f;
-		border-radius: 16px;
-
-		padding: 10px;
-
-		line-height: 38px;
-
-		color: #fcf6e3;
-	}
-
-	p:last-child {
-		font-family: "AustieBost";
-		font-size: 22px;
-
-		line-height: 28px;
-
-		color: #fcf6e3;
-	}
-`;
-
-const TagContainer = styled.div`
-	width: 100%;
-	height: fit-content;
-
-	display: flex;
-	flex-wrap: wrap;
-
-	overflow-y: scroll;
-
-	margin-bottom: 10px;
-
-	div:not(:last-child) {
-		margin-right: 0px;
-	}
-`;
-
-const Tag = styled.div`
-	width: fit-content;
-	height: 38px;
-
-	padding: 2px;
-
-	margin: 3px;
-
-	background-color: #fcf6e3;
-	border-radius: 20px;
-
-	flex-shrink: 0;
-
-	p {
-		padding: 3px;
-		font-family: "Motley";
-		font-size: 28px;
-
-		color: #7d4f4f;
-		border-radius: 12px;
 	}
 `;
 
