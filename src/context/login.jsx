@@ -1,4 +1,4 @@
-import { useState, createContext } from "react";
+import { useState, createContext, useEffect } from "react";
 
 export const LoginDataContext = createContext();
 
@@ -19,6 +19,12 @@ export const LoginDataProvider = ({ children }) => {
 			Authorization: `Bearer ${token}`,
 		},
 	});
+
+	useEffect(() => {
+		if (storage === null) {
+			storage = JSON.stringify({ token: "null", id: null });
+		} else lsToken = JSON.parse(storage).token;
+	}, token);
 
 	return (
 		<LoginDataContext.Provider
