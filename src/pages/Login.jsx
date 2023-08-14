@@ -20,6 +20,8 @@ export default function Login() {
 	const navigate = useNavigate();
 
 	useEffect(() => {
+		console.log(token);
+		console.log(typeof(token));
 		if (token !== "null") {
 			navigate("/home");
 		}
