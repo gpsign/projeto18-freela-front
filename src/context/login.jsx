@@ -10,6 +10,8 @@ export const LoginDataProvider = ({ children }) => {
 		storage = JSON.stringify({ token: "null", id: null });
 	} else lsToken = JSON.parse(storage).token;
 
+	console.log(storage);
+
 	const [token, setToken] = useState(lsToken);
 	const [userId, setUserId] = useState(JSON.parse(storage).id);
 	const [config, setConfig] = useState({
