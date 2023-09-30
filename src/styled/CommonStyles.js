@@ -2,17 +2,17 @@ import { styled } from "styled-components";
 import { Link } from "react-router-dom";
 
 const ElementsContainer = styled.div`
-	width: 450px;
-	height: 500px;
-
-	margin-top: -200px;
+	width: 500px;
+	height: 550px;
 
 	display: flex;
 	flex-direction: column;
-	justify-content: flex-start;
+	justify-content: space-between;
 	align-items: center;
 
 	border-radius: 3px;
+
+	padding: 15px 0px 15px 0px;
 
 	filter: drop-shadow(0px 5px 5px gray);
 
@@ -23,30 +23,40 @@ const ElementsContainer = styled.div`
 	overflow-y: scroll;
 
 	h2 {
-		font-size: 48px;
+		font-size: 58px;
 		margin-top: 34px;
 		margin-bottom: 35px;
 		color: black;
 		text-align: center;
 	}
 
-	input {
-		height: 60px;
-		width: 410px;
+	form{
+		width: 100%;
+		padding: 0px 25px 0px 25px;
+		margin: 30px 0px 30px 0px;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+	}
+
+	form > input {
+		width: 100%;
+		height: 65px;
 
 		border: none;
 		border-radius: 8px;
 		outline: none;
 
-		background-image: linear-gradient(to bottom right, #e7eaed, #e0e1e2);
+		background-image: linear-gradient(to bottom right, #ECF0F6, #E6E9EC);
 
-		margin: 25px 0px 5px 20px;
 		padding-left: 18px;
+		margin: 15px 0px 15px 0px;
 
 		font-size: 22px;
 
 		&::placeholder {
-			font-size: 22px;
+			font-size: 20px;
 		}
 
 		font-family: "ProximaNovaBold";
@@ -74,27 +84,27 @@ const ElementsContainer = styled.div`
 		}
 	}
 
-	button {
-		width: 180px;
-		height: 50px;
+	form > button {
+		height: 60px;
+		width: 130px;
 
 		background-image: linear-gradient(to right, #8deeae, #9effaf);
 
-		border-radius: 28px;
+		border-radius: 4px;
 		border: none;
 
-		font-size: 28px;
+		font-size: 26px;
 		font-family: "ProximaNovaBold";
 
-		margin-left: 130px;
-		margin-top: 35px;
-		margin-bottom: 50px;
+		filter: drop-shadow(0px 3px 3px gray);
+
+		margin-top: 20px;
 		
 
 		transition: filter 0.5s, transform 0.1s ease-out;
 
 		&:hover {
-			filter: brightness(0.94);
+			filter: brightness(0.97) drop-shadow(0px 3px 3px gray);;
 			transition: filter 0.3s;
 
 			cursor: pointer;
@@ -155,7 +165,7 @@ const ElementsContainer = styled.div`
 `;
 
 const StyledLink = styled(Link)`
-	font-size: 22px;
+	font-size: 18px;
 	text-decoration: none;
 	color: black;
 
@@ -167,6 +177,7 @@ const StyledLink = styled(Link)`
 
 	.underline {
 		text-decoration: underline;
+		filter: drop-shadow(1px 1px 6px gray)
 	}
 `;
 
@@ -180,7 +191,6 @@ const CentralizerContainer = styled.div`
 
 	padding-left: auto;
 	padding-right: auto;
-	padding-top: 110px;
 
 	overflow-y: hidden;
 	overflow-x: hidden;

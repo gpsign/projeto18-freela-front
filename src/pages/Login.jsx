@@ -17,7 +17,6 @@ export default function Login() {
 	const navigate = useNavigate();
 
 	useEffect(() => {
-		console.log("o token no login é", token);
 		if (token !== "null") {
 			navigate("/home");
 		}
@@ -48,6 +47,7 @@ export default function Login() {
 	return (
 		<CentralizerContainer>
 			<ElementsContainer>
+			<h2>LOGIN</h2>
 				<form
 					autoComplete='on'
 					onSubmit={(e) => {
@@ -55,7 +55,6 @@ export default function Login() {
 						sendLoginInfo();
 					}}
 				>
-					<h2>LOGIN</h2>
 					<input
 						placeholder='E-mail'
 						type='email'
