@@ -21,5 +21,15 @@ const GlobalStyle = createGlobalStyle`
      font-family: 'AustieBost';
      src: url("/fonts/AustieBostChunky.ttf") format("truetype");
   }
+
+  @font-face {
+     font-family: 'ProximaNovaBold';
+     src: url("/fonts/ProximaNovaBold.otf") format("opentype");
+  }
+
+  @font-face {
+     font-family: 'ProximaNovaMedium';
+     src: url("/fonts/ProximaNovaMedium.otf") format("opentype");
+  }
 `;
 export default GlobalStyle;

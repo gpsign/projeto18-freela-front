@@ -1,14 +1,14 @@
 import { styled } from "styled-components";
 
 export default function Logo() {
-    return <LogoName>ULTIMATE FASHION CATS</LogoName>
+    return <LogoName>Fashion Cats</LogoName>
 }
 
 const LogoName = styled.h1`
-	font-family: "Motley";
-	font-size: 80px;
+	font-family: "ProximaNovaBold";
+	font-size: 100px;
 
-	margin-top: -110px;
+	margin-top: -70px;
 	margin-bottom: 60px;
 
     position: fixed;

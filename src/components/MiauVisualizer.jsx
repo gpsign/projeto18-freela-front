@@ -1,7 +1,5 @@
 import { styled } from "styled-components";
 import {
-	Shadow,
-	PseudoShadow,
 	ElementsContainer,
 } from "../styled/CommonStyles";
 

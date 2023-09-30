@@ -1,7 +1,5 @@
 import {
 	CentralizerContainer,
-	Shadow,
-	PseudoShadow,
 	ElementsContainer,
 	StyledLink,
 } from "../styled/CommonStyles";

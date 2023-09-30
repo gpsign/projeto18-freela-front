@@ -1,8 +1,6 @@
 import Header from "../components/Header";
 import {
 	CentralizerContainer,
-	Shadow,
-	PseudoShadow,
 	ElementsContainer,
 } from "../styled/CommonStyles";
 import { styled } from "styled-components";
@@ -31,8 +29,9 @@ export default function Home() {
 
 	async function updateList() {
 		try {
-			const res = await axios.get(`${VITE_API_URL}/home`, config);
-			setMiausList(res.data);
+			console.log(config);
+			const catsRes = await axios.get(`${VITE_API_URL}/cats`, config);
+			setMiausList(catsRes.data);
 		} catch (err) {
 			console.log(err);
 		}
@@ -58,12 +57,13 @@ export default function Home() {
 	}
 
 	useEffect(() => {
+		console.log("o token na home é", token);
 		if (token === "null") {
 			navigate("/");
 		} else {
 			updateList();
 		}
-	}, [token]);
+	}, []);
 
 	return (
 		<>
@@ -83,35 +83,35 @@ export default function Home() {
 										}}
 									>
 										<input
-											placeholder="Nome do Miau"
+											placeholder='Nome do Miau'
 											onChange={(e) => {
 												setNewMiauName(e.target.value);
 											}}
 											required
 										/>
 										<input
-											placeholder="URL da foto do modelo"
+											placeholder='URL da foto do modelo'
 											onChange={(e) => {
 												setNewMiauUrl(e.target.value);
 											}}
 											required
 										/>
 										<textarea
-											placeholder="Tags (Separe por vírgulas!)"
+											placeholder='Tags (Separe por vírgulas!)'
 											onChange={(e) => {
 												setNewMiauTags(e.target.value);
 											}}
 										/>
 										<textarea
-											placeholder="Descrição do Miau"
+											placeholder='Descrição do Miau'
 											onChange={(e) => {
 												setNewMiauDescription(e.target.value);
 											}}
 										/>
-										<div className="buttonContainer">
-											<button type="submit">Adicionar!</button>
+										<div className='buttonContainer'>
+											<button type='submit'>Adicionar!</button>
 											<button
-												className="Close"
+												className='Close'
 												onClick={() => {
 													setShowAddMiau("false");
 												}}
@@ -130,30 +130,22 @@ export default function Home() {
 						<ElementsContainer>
 							<MiausList>
 								{miausList &&
-									miausList.map(
-										({
-											catid,
-											catname,
-											description,
-											url,
-											ownername,
-											number,
-										}) => {
-											return (
-												<MiauCard
-													key={catid}
-													id={catid}
-													catname={catname}
-													description={description}
-													url={url}
-													ownername={ownername}
-													number={number}
-													setClickedMiau={setClickedMiau}
-													clickedMiau={clickedMiau}
-												/>
-											);
-										}
-									)}
+									miausList.map((cat) => {
+										return (
+											<MiauCard
+												key={cat.catId}
+												id={cat.catId}
+												catname={cat.catName}
+												description={cat.description}
+												url={cat.url}
+												ownername={cat.owner.userName}
+												number={cat.owner.phone}
+												tags={cat.tags}
+												setClickedMiau={setClickedMiau}
+												clickedMiau={clickedMiau}
+											/>
+										);
+									})}
 							</MiausList>
 						</ElementsContainer>
 					</PseudoShadow>

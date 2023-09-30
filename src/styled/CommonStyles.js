@@ -2,53 +2,54 @@ import { styled } from "styled-components";
 import { Link } from "react-router-dom";
 
 const ElementsContainer = styled.div`
-	width: 100%;
-	height: 100%;
+	width: 450px;
+	height: 500px;
 
-	position: absolute;
-	top: -4px;
-	left: 2px;
-	z-index: 3;
+	margin-top: -200px;
 
 	display: flex;
 	flex-direction: column;
-	justify-content: center;
+	justify-content: flex-start;
+	align-items: center;
 
-	background-color: #9b6162;
+	border-radius: 3px;
 
-	border-radius: 28px;
+	filter: drop-shadow(0px 5px 5px gray);
 
-	font-family: "ShiftyNotes";
+	background-color: #ffffff;
+
+	font-family: "ProximaNovaMedium";
 
 	overflow-y: scroll;
 
 	h2 {
-		font-size: 58px;
-		color: #fcf6e3;
-
-		margin-top: 24px;
-		margin-bottom: 26px;
+		font-size: 48px;
+		margin-top: 34px;
+		margin-bottom: 35px;
+		color: black;
 		text-align: center;
 	}
 
 	input {
-		width: 400px;
 		height: 60px;
+		width: 410px;
 
 		border: none;
-		border-radius: 12px;
+		border-radius: 8px;
 		outline: none;
 
-		margin: 0px 25px 25px 20px;
-		padding-left: 8px;
+		background-image: linear-gradient(to bottom right, #e7eaed, #e0e1e2);
 
-		font-size: 28px;
-		letter-spacing: 2px;
+		margin: 25px 0px 5px 20px;
+		padding-left: 18px;
+
+		font-size: 22px;
 
 		&::placeholder {
-			font-family: "ShiftyNotes";
-			font-size: 28px;
+			font-size: 22px;
 		}
+
+		font-family: "ProximaNovaBold";
 	}
 
 	textarea {
@@ -74,24 +75,27 @@ const ElementsContainer = styled.div`
 	}
 
 	button {
-		width: 200px;
+		width: 180px;
 		height: 50px;
 
-		background-color: #a2dbbc;
+		background-image: linear-gradient(to right, #8deeae, #9effaf);
 
 		border-radius: 28px;
 		border: none;
 
-		font-family: "ShiftyNotes";
 		font-size: 28px;
+		font-family: "ProximaNovaBold";
 
-		margin-left: 120px;
+		margin-left: 130px;
+		margin-top: 35px;
+		margin-bottom: 50px;
+		
 
 		transition: filter 0.5s, transform 0.1s ease-out;
 
 		&:hover {
-			filter: brightness(1.1);
-			transition: filter 0.5s;
+			filter: brightness(0.94);
+			transition: filter 0.3s;
 
 			cursor: pointer;
 		}
@@ -150,39 +154,10 @@ const ElementsContainer = styled.div`
 	}
 `;
 
-const PseudoShadow = styled.div`
-	width: 100%;
-	height: 100%;
-
-	position: absolute;
-	top: -6px;
-	left: 3px;
-	z-index: 2;
-
-	background-color: #fcf6e3;
-
-	border-radius: 28px;
-`;
-
-const Shadow = styled.div`
-	width: ${({ width }) => width};
-	height: ${({ height }) => height};
-
-	margin-left: 10px;
-	margin-right: 10px;
-
-	position: relative;
-	z-index: 1;
-
-	background-color: #dbc1ac;
-
-	border-radius: 28px;
-`;
-
 const StyledLink = styled(Link)`
 	font-size: 22px;
 	text-decoration: none;
-	color: #fcf6e3;
+	color: black;
 
 	margin-top: 20px;
 	margin-bottom: 10px;
@@ -212,13 +187,7 @@ const CentralizerContainer = styled.div`
 
 	margin: auto;
 
-	background-color: #fcf6e3;
+	background-image: linear-gradient(to bottom right, #edf1f7, #dddddd);
 `;
 
-export {
-	ElementsContainer,
-	Shadow,
-	PseudoShadow,
-	StyledLink,
-	CentralizerContainer,
-};
+export { ElementsContainer, StyledLink, CentralizerContainer };

@@ -1,7 +1,5 @@
 import {
 	CentralizerContainer,
-	Shadow,
-	PseudoShadow,
 	ElementsContainer,
 	StyledLink,
 } from "../styled/CommonStyles";
@@ -13,79 +11,75 @@ import { LoginDataContext } from "../context/login";
 import { useEffect } from "react";
 
 export default function Login() {
-	const [email, setEmail] = useState("");
-	const [senha, setSenha] = useState("");
+	const [loginInputs, setLoginInputs] = useState({ email: "", password: "" });
 
-	const { token, setToken } = useContext(LoginDataContext);
+	const { token, setToken, setConfig } = useContext(LoginDataContext);
 	const navigate = useNavigate();
 
 	useEffect(() => {
-		console.log(token);
-		console.log(typeof(token));
+		console.log("o token no login é", token);
 		if (token !== "null") {
 			navigate("/home");
 		}
-	}, []);
+	}, [navigate, token]);
 
 	const VITE_API_URL = import.meta.env.VITE_API_URL;
 
 	async function sendLoginInfo() {
-		const info = {
-			email: email,
-			password: senha,
-		};
-
 		try {
-			const newToken = await axios.post(`${VITE_API_URL}/login`, info);
+			const loginRes = await axios.post(`${VITE_API_URL}/sign-in`, loginInputs);
+			const newToken = loginRes.data.token;
 
-			localStorage.setItem("user", JSON.stringify(newToken.data));
-			setToken(newToken.data.token);
+			localStorage.setItem("token", newToken);
+			setToken(newToken);
+			setConfig({
+				headers: {
+					Authorization: `Bearer ${newToken}`,
+				},
+			});
 
 			navigate("/home");
 		} catch (err) {
 			console.log(err);
-
-			if (err.response.status == 401) alert("Senha inválida");
-			else if (err.response.status == 404) alert("Usuário não cadastrado");
+			if (err.response.status == 401) alert("Usuário ou senha inválida");
 		}
 	}
 
 	return (
 		<CentralizerContainer>
-			<Logo />
-			<Shadow width={"450px"} height={"390px"}>
-				<PseudoShadow>
-					<ElementsContainer>
-						<form
-							autoComplete="on"
-							onSubmit={(e) => {
-								e.preventDefault();
-								sendLoginInfo();
-							}}
-						>
-							<h2>LOGIN</h2>
-							<input
-								placeholder="E-mail"
-								type="email"
-								autoComplete="email"
-								onChange={(e) => setEmail(e.target.value)}
-								required
-							/>
-							<input
-								placeholder="Senha"
-								type="password"
-								autoComplete="current-password"
-								onChange={(e) => setSenha(e.target.value)}
-								required
-							/>
-							<button type="submit">ENTRAR</button>
-						</form>
-						<StyledLink to={"/signup"}>
-							Não tem uma conta? <span className="underline">Cadastre-se!</span>
-						</StyledLink>
-					</ElementsContainer>
-				</PseudoShadow>
-			</Shadow>
+			<ElementsContainer>
+				<form
+					autoComplete='on'
+					onSubmit={(e) => {
+						e.preventDefault();
+						sendLoginInfo();
+					}}
+				>
+					<h2>LOGIN</h2>
+					<input
+						placeholder='E-mail'
+						type='email'
+						autoComplete='email'
+						onChange={(e) =>
+							setLoginInputs({ ...loginInputs, email: e.target.value })
+						}
+						required
+					/>
+					<input
+						placeholder='Senha'
+						type='password'
+						autoComplete='current-password'
+						onChange={(e) =>
+							setLoginInputs({ ...loginInputs, password: e.target.value })
+						}
+						required
+					/>
+					<button type='submit'>ENTRAR</button>
+				</form>
+				<StyledLink to={"/signup"}>
+					Não tem uma conta? <span className='underline'>Cadastre-se!</span>
+				</StyledLink>
+			</ElementsContainer>
 		</CentralizerContainer>
 	);
 }

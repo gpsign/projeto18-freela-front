@@ -1,7 +1,4 @@
-import { useContext, useEffect, useState } from "react";
-import axios from "axios";
 import { styled } from "styled-components";
-import { LoginDataContext } from "../context/login";
 
 export default function MiauCard({
 	id,
@@ -10,21 +7,10 @@ export default function MiauCard({
 	url,
 	ownername,
 	number,
+	tags,
 	setClickedMiau,
 }) {
-	const [tags, setTags] = useState([]);
-	const { config } = useContext(LoginDataContext);
-
-	const VITE_API_URL = import.meta.env.VITE_API_URL;
-
-	async function getTags() {
-		const res = await axios.get(`${VITE_API_URL}/tags/${id}`, config);
-		setTags(res.data);
-	}
-
-	useEffect(() => {
-		getTags();
-	}, []);
+	console.log(tags);
 
 	return (
 		<MiauContent
@@ -45,14 +31,13 @@ export default function MiauCard({
 				<h1>{catname}</h1>
 				<MiauDescription>
 					<TagContainer>
-						{tags &&
-							tags.map((tag, i) => {
-								return (
-									<Tag key={i}>
-										<p>{tag.tag}</p>
-									</Tag>
-								);
-							})}
+						{tags.map((tag, i) => {
+							return (
+								<Tag key={i}>
+									<p>{tag}</p>
+								</Tag>
+							);
+						})}
 					</TagContainer>
 					<p>{description}</p>
 				</MiauDescription>

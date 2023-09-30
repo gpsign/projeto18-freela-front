@@ -1,7 +1,5 @@
 import {
 	CentralizerContainer,
-	Shadow,
-	PseudoShadow,
 	ElementsContainer,
 	StyledLink,
 } from "../styled/CommonStyles";
@@ -9,18 +7,17 @@ import { LoginDataContext } from "../context/login";
 import { useContext, useState, useEffect } from "react";
 import { styled } from "styled-components";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
 
 export default function Profile() {
-	const { config, setToken, userId } = useContext(LoginDataContext);
+	const { config, setToken, setConfig } = useContext(LoginDataContext);
 	const [miausList, setMiausList] = useState();
 
 	const VITE_API_URL = import.meta.env.VITE_API_URL;
 
 	async function exit() {
 		try {
-			await axios.delete(`${VITE_API_URL}/exit`, config);
-			localStorage.setItem("user", JSON.stringify({ token: "null", id: null }));
+			localStorage.setItem("token", "null");
+			setConfig({});
 			setToken("null");
 		} catch (err) {
 			console.log(err);
@@ -30,7 +27,7 @@ export default function Profile() {
 	useEffect(() => {
 		async function getMiauByOwner() {
 			try {
-				const res = await axios.get(`${VITE_API_URL}/owner/${userId}`, config);
+				const res = await axios.get(`${VITE_API_URL}/cats/user`, config);
 				setMiausList(res.data);
 			} catch (err) {
 				console.log(err);
@@ -67,7 +64,7 @@ export default function Profile() {
 }
 
 function MiauCard({ miauInfo }) {
-	const { id, name, url, available } = miauInfo;
+	const { catId, name, url, available } = miauInfo;
 	const { config } = useContext(LoginDataContext);
 	const [isAvailable, setIsAvailable] = useState(available);
 
@@ -78,7 +75,7 @@ function MiauCard({ miauInfo }) {
 			onClick={async () => {
 				try {
 					await axios.put(
-						`${VITE_API_URL}/miau/${id}`,
+						`${VITE_API_URL}/cats/${catId}`,
 						{ available: !isAvailable },
 						config
 					);
