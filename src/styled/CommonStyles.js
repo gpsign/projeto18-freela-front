@@ -56,7 +56,7 @@ const ElementsContainer = styled.div`
 		background-image: linear-gradient(to bottom right, #ecf0f6, #e6e9ec);
 
 		padding-left: 18px;
-		margin: 15px 0px 15px 0px;
+		margin: 8px 0px 8px 0px;
 
 		font-size: 22px;
 
