@@ -1,6 +1,12 @@
 import axios from "axios";
 
-export async function submitLogin(loginInputs, setToken, setConfig) {
+export async function submitLogin(
+	loginInputs,
+	setToken,
+	setConfig,
+	setAlert,
+	navigate
+) {
 	const VITE_API_URL = import.meta.env.VITE_API_URL;
 
 	try {
@@ -14,8 +20,10 @@ export async function submitLogin(loginInputs, setToken, setConfig) {
 				Authorization: `Bearer ${newToken}`,
 			},
 		});
+		navigate("/home");
 	} catch (err) {
-		console.log(err);
-		if (err.response.status == 401) alert("Usuário ou senha inválida");
+		if (err.response.status === 401) {
+			setAlert({ message: "Usuário ou senha inválida", show: true });
+		}
 	}
 }

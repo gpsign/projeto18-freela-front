@@ -3,25 +3,40 @@ import { CatCard, Header } from "../components/index.js";
 import { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/authentication.jsx";
-import { redirectLoginIfNull, getAllCatsList } from "../utils/index.js";
+import { redirectLoginIfNull, getAllCatsList, logout } from "../utils/index.js";
 import { CentralizerContainer } from "../styled/CommonStyles.js";
+import { Alert } from "../components/Alert.jsx";
 
 export default function Home() {
 	const [catsList, setCatsList] = useState([]);
 	const navigate = useNavigate();
-	const { token, config } = useContext(AuthContext);
+	const { token, setToken, config, setConfig } = useContext(AuthContext);
+	const [showAlert, setShowAlert] = useState({
+		show: false,
+		message: "",
+	});
 	const [newCat, setNewCat] = useState({
 		name: "",
 		url: "",
 		description: "",
 	});
 
-	redirectLoginIfNull(useEffect, token, navigate);
-
-	getAllCatsList(useEffect, setCatsList, config);
+	useEffect(() => {
+		redirectLoginIfNull(token, navigate);
+		getAllCatsList(setCatsList, setShowAlert, config);
+	}, []);
 
 	return (
 		<>
+			{showAlert.show && (
+				<Alert
+					message={showAlert.message}
+					onConfirm={() => {
+						logout(setConfig, setToken, navigate);
+					}}
+					setShow={setShowAlert}
+				/>
+			)}
 			<CentralizerContainer>
 				<Header />
 				<CatsGrid>
@@ -46,5 +61,4 @@ const CatsGrid = styled.div`
 	display: grid;
 	grid-gap: 30px;
 	grid-template-columns: repeat(5, 300px);
-	filter: drop-shadow(0px 0px 5px gray);
 `;

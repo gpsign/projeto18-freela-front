@@ -1,7 +1,5 @@
-export function redirectHomeIfToken(useEffect, token, navigate) {
-	useEffect(() => {
-		if (token !== "null") {
-			navigate("/home");
-		}
-	}, [navigate, token]);
+export function redirectHomeIfToken(token, navigate) {
+	if (token !== "null") {
+		navigate("/home");
+	}
 }

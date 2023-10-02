@@ -72,7 +72,7 @@ const OptionsWindow = styled.ul`
 	padding: 5px;
 
 	position: absolute;
-	top: ${({ expanded }) => (expanded === "true" ? "70px" : "-70px")};
+	top: ${({ expanded }) => (expanded === "true" ? "50px" : "-50px")};
 	right: 40px;
 	z-index: -1;
 	filter: drop-shadow(0px 0px 5px gray);

@@ -45,7 +45,7 @@ const ElementsContainer = styled.div`
 		align-items: center;
 	}
 
-	form > input {
+	input {
 		width: 100%;
 		height: 65px;
 
@@ -55,7 +55,7 @@ const ElementsContainer = styled.div`
 
 		background-image: linear-gradient(to bottom right, #ecf0f6, #e6e9ec);
 
-		padding-left: 18px;
+		padding-left: 42px;
 		margin: 8px 0px 8px 0px;
 
 		font-size: 22px;

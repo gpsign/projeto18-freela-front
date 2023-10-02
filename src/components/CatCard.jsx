@@ -43,7 +43,7 @@ const CatContent = styled.div`
 	padding-top: 150px;
 	overflow-y: scroll;
 
-	filter: drop-shadow(0px 0px 5px lightgray);
+	filter: drop-shadow(0px 0px 5px gray);
 
 	&:hover {
 		cursor: pointer;

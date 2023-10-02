@@ -36,7 +36,7 @@ const Position = styled.div`
 
 const HeaderContent = styled.div`
 	width: 100%;
-	height: 70px;
+	height: 50px;
 
 	position: relative;
 
@@ -56,7 +56,7 @@ const HeaderContent = styled.div`
 
 const Logo = styled.h1`
 	font-family: "ProximaNovaBold";
-	font-size: 40px !important;
+	font-size: 28px !important;
 
 	color: #ffffff;
 `;
@@ -67,7 +67,7 @@ const Profile = styled.div`
 	align-items: center;
 
 	width: fit-content;
-	height: 50px;
+	height: 40px;
 
 	padding: 0px 20px 0px 20px;
 
@@ -77,8 +77,8 @@ const Profile = styled.div`
 `;
 
 const ProfilePic = styled.img`
-	height: 50px;
-	width: 50px;
+	height: 40px;
+	width: 40px;
 	object-fit: cover;
 	border-radius: 100%;
 	margin-right: 10px;
