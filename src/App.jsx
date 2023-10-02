@@ -5,22 +5,22 @@ import GlobalStyle from "./styled/GlobalStyle";
 import SignUp from "./pages/SignUp";
 import Home from "./pages/Home";
 import Profile from "./pages/Profile";
-import { LoginDataProvider } from "./context/login";
- 
+import { AuthProvider } from "./context/authentication.jsx";
+
 function App() {
 	return (
-		<LoginDataProvider>
+		<AuthProvider>
 			<BrowserRouter>
 				<Reset />
 				<GlobalStyle />
 				<Routes>
-					<Route path="/home" element={<Home />}></Route>
-					<Route path="/" element={<Login />}></Route>
-					<Route path="/signup" element={<SignUp />}></Route>
-					<Route path="/profile" element={<Profile />}></Route>
+					<Route path='/home' element={<Home />}></Route>
+					<Route path='/' element={<Login />}></Route>
+					<Route path='/signup' element={<SignUp />}></Route>
+					<Route path='/profile' element={<Profile />}></Route>
 				</Routes>
 			</BrowserRouter>
-		</LoginDataProvider>
+		</AuthProvider>
 	);
 }
 

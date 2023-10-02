@@ -16,7 +16,12 @@ const ElementsContainer = styled.div`
 
 	filter: drop-shadow(0px 5px 5px gray);
 
-	background-color: #ffffff;
+	background: rgb(247, 247, 247);
+	background: radial-gradient(
+		circle,
+		rgba(247, 247, 247, 1) 15%,
+		rgba(255, 255, 255, 1) 100%
+	);
 
 	font-family: "ProximaNovaMedium";
 
@@ -127,8 +132,7 @@ const CentralizerContainer = styled.div`
 	align-items: center;
 	justify-content: center;
 
-	padding-left: auto;
-	padding-right: auto;
+	padding: 180px auto 10px auto;
 
 	overflow-y: scroll;
 	overflow-x: hidden;

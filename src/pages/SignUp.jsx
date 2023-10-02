@@ -5,7 +5,7 @@ import {
 } from "../styled/CommonStyles";
 import { useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { LoginDataContext } from "../context/login";
+import { AuthContext } from "../context/authentication.jsx";
 import { redirectHomeIfToken, submitSignup } from "../utils/index.js";
 
 export default function SignUp() {
@@ -18,9 +18,9 @@ export default function SignUp() {
 	});
 
 	const navigate = useNavigate();
-	const { token } = useContext(LoginDataContext);
+	const { token } = useContext(AuthContext);
 
-	//redirectHomeIfToken(useEffect, token, navigate);
+	redirectHomeIfToken(useEffect, token, navigate);
 
 	return (
 		<CentralizerContainer>

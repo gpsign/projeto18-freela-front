@@ -1,8 +1,8 @@
 import { useState, createContext, useEffect } from "react";
 
-export const LoginDataContext = createContext();
+export const AuthContext = createContext();
 
-export const LoginDataProvider = ({ children }) => {
+export const AuthProvider = ({ children }) => {
 	let lsToken = localStorage.getItem("token");
 
 	const [token, setToken] = useState(lsToken);
@@ -12,17 +12,15 @@ export const LoginDataProvider = ({ children }) => {
 		},
 	});
 
-	console.log(token);
-
 	useEffect(() => {
 		setToken(localStorage.getItem("token"));
 	}, []);
 
 	return (
-		<LoginDataContext.Provider
+		<AuthContext.Provider
 			value={{ token, setToken, lsToken, config, setConfig }}
 		>
 			{children}
-		</LoginDataContext.Provider>
+		</AuthContext.Provider>
 	);
 };

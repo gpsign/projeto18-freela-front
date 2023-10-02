@@ -1,24 +1,22 @@
-import Header from "../components/Header";
 import { styled } from "styled-components";
-import CatCard from "../components/CatCard";
-import MiauVisualizer from "../components/MiauVisualizer";
+import { CatCard, Header } from "../components/index.js";
 import { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { LoginDataContext } from "../context/login";
+import { AuthContext } from "../context/authentication.jsx";
 import { redirectLoginIfNull, getAllCatsList } from "../utils/index.js";
 import { CentralizerContainer } from "../styled/CommonStyles.js";
 
 export default function Home() {
 	const [catsList, setCatsList] = useState([]);
 	const navigate = useNavigate();
-	const { token, config } = useContext(LoginDataContext);
+	const { token, config } = useContext(AuthContext);
 	const [newCat, setNewCat] = useState({
 		name: "",
 		url: "",
 		description: "",
 	});
 
-	//redirectLoginIfNull(useEffect, token, navigate);
+	redirectLoginIfNull(useEffect, token, navigate);
 
 	getAllCatsList(useEffect, setCatsList, config);
 
@@ -27,11 +25,10 @@ export default function Home() {
 			<CentralizerContainer>
 				<Header />
 				<CatsGrid>
-					{catsList.map((cat) => {
-						return <CatCard cat={cat} />;
+					{catsList.map((cat, i) => {
+						return <CatCard key={i} cat={cat} />;
 					})}
 				</CatsGrid>
-				<MiauVisualizer />
 			</CentralizerContainer>
 		</>
 	);
@@ -39,15 +36,15 @@ export default function Home() {
 
 const CatsGrid = styled.div`
 	width: fit-content;
-	height: 900px;
+	height: fit-content;
 
 	border-radius: 4px;
 	padding: 15px;
 
-	margin-top: 200px;
+	margin: 100px 0px 0px 0px;
 
 	display: grid;
-	grid-gap: 25px;
-	grid-template-columns: repeat(4, 400px);
-	filter: drop-shadow(0px 5px 5px gray);
+	grid-gap: 30px;
+	grid-template-columns: repeat(5, 300px);
+	filter: drop-shadow(0px 0px 5px gray);
 `;

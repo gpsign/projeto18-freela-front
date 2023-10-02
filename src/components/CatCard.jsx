@@ -1,28 +1,25 @@
 import { styled } from "styled-components";
 
-const ilink =
-	"https://www.webbox.co.uk/wp-content/webp-express/webp-images/uploads/2020/10/angry_cat_2-scaled-1568x1046.jpg.webp";
-
-export default function CatCard({ cat }) {
+export function CatCard({ cat }) {
 	return (
 		<CatContent url={cat.url}>
 			<Gradient />
 			<CatInfo>
-				<h1>{cat.catName}</h1>
+				<CatName>{cat.catName}</CatName>
 				<TagContainer>
 					{cat.tags.map((tag) => {
-						return <Tag>{tag.toUpperCase()}</Tag>;
+						return <Tag key={cat.id + tag}>{tag.toUpperCase()}</Tag>;
 					})}
 				</TagContainer>
 
-				<p>{cat.description}</p>
+				<CatDescription>{cat.description}</CatDescription>
 			</CatInfo>
 		</CatContent>
 	);
 }
 
 const Gradient = styled.div`
-	height: 20px;
+	height: 10px;
 	background: linear-gradient(
 		0deg,
 		rgba(255, 255, 255, 1) 0%,
@@ -31,8 +28,8 @@ const Gradient = styled.div`
 `;
 
 const CatContent = styled.div`
-	width: 400px;
-	height: 450px;
+	width: 300px;
+	height: 300px;
 
 	position: relative;
 	z-index: 1;
@@ -43,37 +40,24 @@ const CatContent = styled.div`
 
 	border-radius: 8px;
 
-	padding-top: 210px;
+	padding-top: 150px;
+	overflow-y: scroll;
 
 	filter: drop-shadow(0px 0px 5px lightgray);
-
-	img {
-		width: 100%;
-		height: 250px;
-		border-radius: 8px 8px 0px 0px;
-		object-fit: cover;
-	}
 
 	&:hover {
 		cursor: pointer;
 	}
 
 	&:active {
-		transform: scale(0.99);
+		transform: translateY(2px);
 		transition: transform 0.1s ease-out;
 	}
-
-	* {
-		user-select: none;
-	}
-
-	overflow-y: scroll;
 `;
 
 const CatInfo = styled.div`
-	min-height: 220px;
+	min-height: 140px;
 	max-height: fit-content;
-	width: 100%;
 
 	padding-left: 10px;
 	padding-right: 10px;
@@ -88,25 +72,31 @@ const CatInfo = styled.div`
 		rgba(233, 233, 233, 1) 15%,
 		rgba(255, 255, 255, 1) 70%
 	);
+`;
 
-	h1 {
-		font-family: "ProximaNovaBold";
-		font-size: 36px !important;
+const CatName = styled.h1`
+	font-family: "ProximaNovaBold";
+	font-size: 22px !important;
 
-		color: black;
+	color: black;
 
-		margin: 5px !important;
-		white-space: nowrap;
-	}
+	margin: 5px !important;
+	white-space: wrap;
 
-	p {
-		font-family: "ProximaNovaMedium";
-		font-size: 16px !important;
+	max-height: 70px;
 
-		margin: 5px !important;
-		color: rgb(80, 80, 80);
-		line-height: 20px;
-	}
+	overflow-y: hidden;
+`;
+
+const CatDescription = styled.p`
+	font-family: "ProximaNovaMedium";
+	font-size: 16px !important;
+
+	margin: 5px !important;
+	color: rgb(80, 80, 80);
+	line-height: 20px;
+
+	word-break: break-word;
 `;
 
 const TagContainer = styled.div`
@@ -121,18 +111,18 @@ const TagContainer = styled.div`
 
 	margin-bottom: 1px;
 
-	div:not(:last-child) {
+	div:last-child {
 		margin-right: 0px;
 	}
 `;
 
 const Tag = styled.div`
 	width: fit-content;
-	height: 22px;
+	height: 18px;
 
 	padding: 5px;
 
-	margin: 5px;
+	margin: 2px 3px 2px 3px;
 
 	background: rgb(65, 65, 65);
 	background: radial-gradient(
@@ -141,10 +131,7 @@ const Tag = styled.div`
 		rgba(41, 41, 41, 1) 100%
 	);
 
-	background-color: black;
-
 	font-family: "ProximaNovaMedium";
-	font-size: 13px;
-
+	font-size: 10px;
 	color: white;
 `;

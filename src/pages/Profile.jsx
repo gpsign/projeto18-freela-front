@@ -3,38 +3,14 @@ import {
 	ElementsContainer,
 	StyledLink,
 } from "../styled/CommonStyles";
-import { LoginDataContext } from "../context/login";
+import { AuthContext } from "../context/authentication";
 import { useContext, useState, useEffect } from "react";
 import { styled } from "styled-components";
 import axios from "axios";
 
 export default function Profile() {
-	const { config, setToken, setConfig } = useContext(LoginDataContext);
+	const { config, setToken, setConfig } = useContext(AuthContext);
 	const [miausList, setMiausList] = useState();
-
-	const VITE_API_URL = import.meta.env.VITE_API_URL;
-
-	async function exit() {
-		try {
-			localStorage.setItem("token", "null");
-			setConfig({});
-			setToken("null");
-		} catch (err) {
-			console.log(err);
-		}
-	}
-
-	useEffect(() => {
-		async function getMiauByOwner() {
-			try {
-				const res = await axios.get(`${VITE_API_URL}/cats/user`, config);
-				setMiausList(res.data);
-			} catch (err) {
-				console.log(err);
-			}
-		}
-		getMiauByOwner();
-	}, []);
 
 	return (
 		<CentralizerContainer>

@@ -6,15 +6,15 @@ import {
 import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { submitLogin, redirectHomeIfToken } from "../utils/index.js";
-import { LoginDataContext } from "../context/login";
+import { AuthContext } from "../context/authentication.jsx";
 import { useEffect } from "react";
 
 export default function Login() {
 	const [loginInputs, setLoginInputs] = useState({ email: "", password: "" });
-	const { token, setToken, setConfig } = useContext(LoginDataContext);
+	const { token, setToken, setConfig } = useContext(AuthContext);
 	const navigate = useNavigate();
 
-	//redirectHomeIfToken(useEffect, token, navigate);
+	redirectHomeIfToken(useEffect, token, navigate);
 
 	return (
 		<CentralizerContainer>

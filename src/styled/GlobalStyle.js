@@ -2,10 +2,11 @@ import { createGlobalStyle } from "styled-components";
 
 const GlobalStyle = createGlobalStyle`
 
-*{
- box-sizing: border-box;
- flex-shrink: 0;
-}
+   * {
+   box-sizing: border-box;
+   flex-shrink: 0;
+   user-select: none;
+   }
 
  @font-face {
      font-family: 'Motley';
@@ -32,4 +33,5 @@ const GlobalStyle = createGlobalStyle`
      src: url("/fonts/ProximaNovaMedium.otf") format("opentype");
   }
 `;
+
 export default GlobalStyle;
