@@ -1,46 +1,40 @@
 import { styled } from "styled-components";
-import {
-	ElementsContainer,
-} from "../styled/CommonStyles";
+import { ElementsContainer } from "../styled/CommonStyles";
 
 export default function MiauVisualizer({ clickedMiau }) {
 	return (
-		<Shadow width={"550px"} height={"800px"}>
-			<PseudoShadow>
-				<ElementsContainer>
-					{clickedMiau && (
-						<MiauVisualizerContainer>
-							<ImageContainer>
-								<img
-									onClick={() => {
-										alert(tags);
-									}}
-									src={clickedMiau.url}
-									alt={clickedMiau.catname}
-								/>
-								<h2>{clickedMiau.catname}</h2>
-							</ImageContainer>
+		<ElementsContainer>
+			{clickedMiau && (
+				<MiauVisualizerContainer>
+					<ImageContainer>
+						<img
+							onClick={() => {
+								alert(tags);
+							}}
+							src={clickedMiau.url}
+							alt={clickedMiau.catname}
+						/>
+						<h2>{clickedMiau.catname}</h2>
+					</ImageContainer>
 
-							<TagContainer>
-								{clickedMiau.tags &&
-									clickedMiau.tags.map((tag, i) => {
-										return (
-											<Tag key={i}>
-												<p>{tag.tag}</p>
-											</Tag>
-										);
-									})}
-							</TagContainer>
-							<VisualizerDescription>
-								<p>Dono: {clickedMiau.ownername}</p>
-								<p>Telefone: {clickedMiau.number}</p>
-								<p>{clickedMiau.description}</p>
-							</VisualizerDescription>
-						</MiauVisualizerContainer>
-					)}
-				</ElementsContainer>
-			</PseudoShadow>
-		</Shadow>
+					<TagContainer>
+						{clickedMiau.tags &&
+							clickedMiau.tags.map((tag, i) => {
+								return (
+									<Tag key={i}>
+										<p>{tag.tag}</p>
+									</Tag>
+								);
+							})}
+					</TagContainer>
+					<VisualizerDescription>
+						<p>Dono: {clickedMiau.ownername}</p>
+						<p>Telefone: {clickedMiau.number}</p>
+						<p>{clickedMiau.description}</p>
+					</VisualizerDescription>
+				</MiauVisualizerContainer>
+			)}
+		</ElementsContainer>
 	);
 }
 

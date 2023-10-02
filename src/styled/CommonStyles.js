@@ -2,8 +2,8 @@ import { styled } from "styled-components";
 import { Link } from "react-router-dom";
 
 const ElementsContainer = styled.div`
-	width: 500px;
-	height: 550px;
+	width: ${({ width }) => width};
+	height: ${({ heigth }) => heigth};
 
 	display: flex;
 	flex-direction: column;
@@ -30,7 +30,7 @@ const ElementsContainer = styled.div`
 		text-align: center;
 	}
 
-	form{
+	form {
 		width: 100%;
 		padding: 0px 25px 0px 25px;
 		margin: 30px 0px 30px 0px;
@@ -48,7 +48,7 @@ const ElementsContainer = styled.div`
 		border-radius: 8px;
 		outline: none;
 
-		background-image: linear-gradient(to bottom right, #ECF0F6, #E6E9EC);
+		background-image: linear-gradient(to bottom right, #ecf0f6, #e6e9ec);
 
 		padding-left: 18px;
 		margin: 15px 0px 15px 0px;
@@ -62,49 +62,27 @@ const ElementsContainer = styled.div`
 		font-family: "ProximaNovaBold";
 	}
 
-	textarea {
-		width: 400px;
-		height: 140px;
-
-		border: none;
-		border-radius: 12px;
-		outline: none;
-
-		margin: 0px 25px 25px 20px;
-		padding-left: 8px;
-
-		font-size: 28px;
-		letter-spacing: 2px;
-
-		resize: none;
-
-		&::placeholder {
-			font-family: "ShiftyNotes";
-			font-size: 28px;
-		}
-	}
-
 	form > button {
 		height: 60px;
-		width: 130px;
+		width: fit-content;
 
-		background-image: linear-gradient(to right, #8deeae, #9effaf);
+		background-image: linear-gradient(to right, #a6eca8, #a6ecb8);
 
 		border-radius: 4px;
 		border: none;
 
-		font-size: 26px;
+		font-size: 22px;
 		font-family: "ProximaNovaBold";
 
-		filter: drop-shadow(0px 3px 3px gray);
+		filter: drop-shadow(0px 2px 4px lightgray);
 
 		margin-top: 20px;
-		
+		padding: 15px;
 
 		transition: filter 0.5s, transform 0.1s ease-out;
 
 		&:hover {
-			filter: brightness(0.97) drop-shadow(0px 3px 3px gray);;
+			filter: brightness(0.97) drop-shadow(0px 2px 4px lightgray);
 			transition: filter 0.3s;
 
 			cursor: pointer;
@@ -116,51 +94,11 @@ const ElementsContainer = styled.div`
 		}
 	}
 
-	.Close {
-		width: 50px;
-		height: 50px;
-
-		border-radius: 100%;
-		background-color: #e75353;
-
-		outline: none;
-		border: none;
-
-		cursor: pointer;
-
-		transition: all 0.5s ease-out;
-
-		margin-left: 20px;
-
-		filter: brightness(1.1);
-
-		p {
-			font-family: "motley";
-			font-size: 32px;
-			margin-left: 2px;
-		}
-
-		&:not(:hover) {
-			filter: brightness(1);
-		}
-
-		&:active {
-			transform: scale(0.95);
-		}
-	}
-
 	input:-webkit-autofill,
 	input:-webkit-autofill:hover,
 	input:-webkit-autofill:focus,
 	input:-webkit-autofill:active {
 		-webkit-box-shadow: 0 0 0 30px white inset !important;
-	}
-
-	.buttonContainer {
-		width: fit-content;
-		display: flex;
-		justify-content: center;
-		align-items: center;
 	}
 `;
 
@@ -177,7 +115,7 @@ const StyledLink = styled(Link)`
 
 	.underline {
 		text-decoration: underline;
-		filter: drop-shadow(1px 1px 6px gray)
+		filter: drop-shadow(1px 1px 6px gray);
 	}
 `;
 
@@ -192,12 +130,17 @@ const CentralizerContainer = styled.div`
 	padding-left: auto;
 	padding-right: auto;
 
-	overflow-y: hidden;
+	overflow-y: scroll;
 	overflow-x: hidden;
 
 	margin: auto;
 
-	background-image: linear-gradient(to bottom right, #edf1f7, #dddddd);
+	background: rgb(237, 241, 247);
+	background: linear-gradient(
+		144deg,
+		rgba(237, 241, 247, 1) 0%,
+		rgba(219, 219, 219, 1) 100%
+	);
 `;
 
 export { ElementsContainer, StyledLink, CentralizerContainer };

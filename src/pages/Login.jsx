@@ -5,54 +5,27 @@ import {
 } from "../styled/CommonStyles";
 import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
-import Logo from "../components/Logo";
+import { submitLogin, redirectHomeIfToken } from "../utils/index.js";
 import { LoginDataContext } from "../context/login";
 import { useEffect } from "react";
 
 export default function Login() {
 	const [loginInputs, setLoginInputs] = useState({ email: "", password: "" });
-
 	const { token, setToken, setConfig } = useContext(LoginDataContext);
 	const navigate = useNavigate();
 
-	useEffect(() => {
-		if (token !== "null") {
-			navigate("/home");
-		}
-	}, [navigate, token]);
-
-	const VITE_API_URL = import.meta.env.VITE_API_URL;
-
-	async function sendLoginInfo() {
-		try {
-			const loginRes = await axios.post(`${VITE_API_URL}/sign-in`, loginInputs);
-			const newToken = loginRes.data.token;
-
-			localStorage.setItem("token", newToken);
-			setToken(newToken);
-			setConfig({
-				headers: {
-					Authorization: `Bearer ${newToken}`,
-				},
-			});
-
-			navigate("/home");
-		} catch (err) {
-			console.log(err);
-			if (err.response.status == 401) alert("Usuário ou senha inválida");
-		}
-	}
+	//redirectHomeIfToken(useEffect, token, navigate);
 
 	return (
 		<CentralizerContainer>
-			<ElementsContainer>
-			<h2>LOGIN</h2>
+			<ElementsContainer width={"450px"} height={"550px"}>
+				<h2>LOGIN</h2>
 				<form
 					autoComplete='on'
-					onSubmit={(e) => {
+					onSubmit={async (e) => {
 						e.preventDefault();
-						sendLoginInfo();
+						await submitLogin(loginInputs, setToken, setConfig);
+						navigate("/home");
 					}}
 				>
 					<input
