@@ -6,3 +6,4 @@ export * from "./submitNewCat.js";
 export * from "./submitSignup.js";
 export * from "./getUserCatsList.js";
 export * from "./logout.js";
+export * from "./searchCats.js";

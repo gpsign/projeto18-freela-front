@@ -3,11 +3,9 @@ import { CatCard, Header } from "../components/index.js";
 import { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/authentication.jsx";
-import { redirectLoginIfNull, getAllCatsList, logout } from "../utils/index.js";
+import { redirectLoginIfNull, getAllCatsList, logout, searchCats } from "../utils/index.js";
 import { CentralizerContainer } from "../styled/CommonStyles.js";
 import { Alert } from "../components/Alert.jsx";
-import { searchCats } from "../utils/searchCats.js";
-import axios from "axios";
 
 var timeout = null;
 
