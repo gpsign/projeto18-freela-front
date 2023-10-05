@@ -1,16 +1,23 @@
 import { styled } from "styled-components";
 import { CatCard, Header } from "../components/index.js";
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect, useContext, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/authentication.jsx";
-import { redirectLoginIfNull, getAllCatsList, logout, searchCats } from "../utils/index.js";
+import {
+	redirectLoginIfNull,
+	getAllCatsList,
+	logout,
+	searchCats,
+} from "../utils/index.js";
 import { CentralizerContainer } from "../styled/CommonStyles.js";
 import { Alert } from "../components/Alert.jsx";
+import { getPopularTagsList } from "../utils/getPopularTagsList.js";
 
 var timeout = null;
 
 export default function Home() {
 	const [catsList, setCatsList] = useState([]);
+	const [tagsList, setTagsList] = useState([]);
 	const [filter, setFilter] = useState("name");
 	const [searchValue, setSearchValue] = useState("");
 	const navigate = useNavigate();
@@ -25,11 +32,16 @@ export default function Home() {
 		description: "",
 	});
 
+	const input = useRef(null);
+
 	useEffect(() => {
 		redirectLoginIfNull(token, navigate);
+
 		searchValue != ""
 			? searchCats(setCatsList, searchValue, filter, config)
 			: getAllCatsList(setCatsList, setShowAlert, config);
+
+		getPopularTagsList(setTagsList, setShowAlert, config);
 	}, []);
 
 	return (
@@ -70,8 +82,8 @@ export default function Home() {
 							</Filter>
 						</Options>
 					</SearchTitle>
-
 					<SearchInput
+						ref={input}
 						placeholder={filter === "name" ? "Nomes" : "Tags"}
 						onChange={async (e) => {
 							clearTimeout(timeout);
@@ -88,6 +100,28 @@ export default function Home() {
 							}, 400);
 						}}
 					/>
+					<TagsTitle>Tags Populares:</TagsTitle>
+					<PopularTags>
+						{tagsList.map((row) => {
+							return (
+								<>
+									<Division />
+									<TagLine
+										onClick={() => {
+											setSearchValue(row.tag.toUpperCase());
+											setFilter("tags");
+											searchCats(setCatsList, row.tag, "tags", config);
+											input.current.value = row.tag;
+										}}
+									>
+										<p>{row.tag.toUpperCase()}</p>
+										<p>{row.popularity}</p>
+									</TagLine>
+								</>
+							);
+						})}
+						<Division />
+					</PopularTags>
 				</LeftBox>
 				<CatsGrid>
 					{catsList.length > 0 ? (
@@ -143,7 +177,7 @@ const LeftBox = styled.div`
 	background: radial-gradient(circle, #414141 0%, #333333 100%);
 
 	font-family: "ProximaNovaBold";
-	font-size: 20px !important;
+	font-size: 21px !important;
 
 	filter: drop-shadow(0px 0px 2px black);
 
@@ -199,13 +233,61 @@ const SearchInput = styled.input`
 	}
 `;
 
+const TagsTitle = styled.h2`
+	margin-top: 30px;
+	margin-bottom: 10px;
+`;
+
+const Division = styled.div`
+	width: 100%;
+	height: 1px;
+	background: rgb(83, 83, 83);
+	background: radial-gradient(
+		circle,
+		rgba(83, 83, 83, 1) 40%,
+		rgba(75, 75, 75, 1) 80%,
+		rgba(218, 218, 218, 0) 100%
+	);
+`;
+
+const PopularTags = styled.ul`
+	margin-top: 10px;
+	width: 100%;
+	height: fit-content;
+`;
+
+const TagLine = styled.li`
+	width: 100%;
+	height: fit-content;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 8px;
+	border-radius: 8px;
+
+	& > p {
+		font-size: 14px;
+	}
+
+	&:hover {
+		cursor: pointer;
+		background: rgb(41, 41, 41);
+		background: radial-gradient(circle, #535353 0%, #464646 100%);
+	}
+
+	&:active {
+		transform: scale(0.95);
+		transition: transform 0.1s;
+	}
+`;
+
 const CatsGrid = styled.div`
 	min-height: 630px;
 	width: fit-content;
 	height: fit-content;
 
 	border-radius: 4px;
-	margin-left: 20px;
+	margin-left: 30px;
 
 	display: grid;
 	grid-gap: 30px;
