@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const ElementsContainer = styled.div`
 	width: ${({ width }) => width};
-	height: ${({ heigth }) => heigth};
+	height: ${({ height }) => height};
 
 	display: flex;
 	flex-direction: column;
@@ -11,6 +11,8 @@ const ElementsContainer = styled.div`
 	align-items: center;
 
 	border-radius: 3px;
+
+	margin-top: ${({ margin }) => margin};
 
 	padding: 15px 0px 15px 0px;
 
@@ -129,15 +131,10 @@ const CentralizerContainer = styled.div`
 	height: 100vh;
 
 	display: flex;
-	align-items: center;
 	justify-content: center;
 
-	padding: 180px auto 10px auto;
-
-	overflow-y: scroll;
+	overflow-y: hidden;
 	overflow-x: hidden;
-
-	margin: auto;
 
 	background: rgb(237, 241, 247);
 	background: linear-gradient(

@@ -15,6 +15,7 @@ export const AuthProvider = ({ children }) => {
 	const [showAlert, setShowAlert] = useState({
 		show: false,
 		message: "",
+		onConfirm: undefined,
 	});
 
 	useEffect(() => {

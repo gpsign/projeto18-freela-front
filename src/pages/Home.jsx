@@ -39,21 +39,29 @@ export default function Home() {
 
 		searchValue != ""
 			? searchCats(setCatsList, searchValue, filter, config)
-			: getAllCatsList(setCatsList, setShowAlert, config);
+			: getAllCatsList(
+					setCatsList,
+					setShowAlert,
+					config,
+					setConfig,
+					setToken,
+					navigate
+			  );
 
-		getPopularTagsList(setTagsList, setShowAlert, config);
+		getPopularTagsList(
+			setTagsList,
+			setShowAlert,
+			config,
+			setConfig,
+			setToken,
+			navigate
+		);
 	}, []);
 
 	return (
 		<>
-			{showAlert.show && (
-				<Alert
-					onConfirm={() => {
-						logout(setConfig, setToken, navigate);
-					}}
-				/>
-			)}
 			{showNewCat && <NewCatWindow />}
+			{showAlert.show && <Alert />}
 			<CentralizerContainer>
 				<Header />
 				<LeftBox>
@@ -172,6 +180,8 @@ const LeftBox = styled.div`
 
 	border-radius: 8px;
 
+	margin-top: 140px;
+
 	background: rgb(41, 41, 41);
 	background: radial-gradient(circle, #414141 0%, #333333 100%);
 
@@ -281,12 +291,16 @@ const TagLine = styled.li`
 `;
 
 const CatsGrid = styled.div`
-	min-height: 630px;
 	width: fit-content;
+	max-height: 835px;
 	height: fit-content;
 
 	border-radius: 4px;
-	margin-left: 30px;
+	margin-left: 20px;
+	margin-top: 130px;
+
+	padding: 10px;
+	overflow-y: scroll;
 
 	display: grid;
 	grid-gap: 30px;

@@ -26,7 +26,7 @@ export default function Login() {
 		<>
 			{showAlert.show && <Alert />}
 			<CentralizerContainer>
-				<ElementsContainer width={"450px"} height={"550px"}>
+				<ElementsContainer width={"450px"} height={"510px"} margin={"200px"}>
 					<h2>LOGIN</h2>
 					<form
 						autoComplete='on'

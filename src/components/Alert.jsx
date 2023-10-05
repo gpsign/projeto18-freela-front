@@ -2,7 +2,7 @@ import { useContext } from "react";
 import styled from "styled-components";
 import { AuthContext } from "../context/authentication.jsx";
 
-export function Alert({ onConfirm }) {
+export function Alert() {
 	const { setShowAlert, showAlert } = useContext(AuthContext);
 	return (
 		<Behind>
@@ -13,10 +13,11 @@ export function Alert({ onConfirm }) {
 				</Message>
 				<button
 					onClick={() => {
-						onConfirm && onConfirm();
+						showAlert.onConfirm && showAlert.onConfirm();
 						setShowAlert({
 							show: false,
 							message: "",
+							onConfirm: undefined,
 						});
 					}}
 				>

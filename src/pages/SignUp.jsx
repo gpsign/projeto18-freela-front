@@ -17,14 +17,18 @@ export default function SignUp() {
 		confirmPassword: "",
 	});
 
-	const navigate = useNavigate();
 	const { token } = useContext(AuthContext);
 
-	redirectHomeIfToken(useEffect, token, navigate);
+	const navigate = useNavigate();
+
+	useEffect(() => {
+		redirectHomeIfToken(token, navigate);
+	}, []);
+
 
 	return (
 		<CentralizerContainer>
-			<ElementsContainer width={"450px"}>
+			<ElementsContainer width={"450px"} height={"850px"} margin={"50px"}>
 				<h2>SIGN-UP</h2>
 				<form
 					onSubmit={(e) => {
