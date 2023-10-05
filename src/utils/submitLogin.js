@@ -22,6 +22,9 @@ export async function submitLogin(
 		});
 		navigate("/home");
 	} catch (err) {
+		if (err.code === "ERR_NETWORK") {
+			setAlert({ message: "Erro de Conexão", show: true });
+		}
 		if (err.response.status === 401) {
 			setAlert({ message: "Usuário ou senha inválida", show: true });
 		}

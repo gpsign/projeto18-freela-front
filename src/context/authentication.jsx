@@ -6,10 +6,15 @@ export const AuthProvider = ({ children }) => {
 	let lsToken = localStorage.getItem("token");
 
 	const [token, setToken] = useState(lsToken);
+	const [showNewCat, setShowNewCat] = useState(false);
 	const [config, setConfig] = useState({
 		headers: {
 			Authorization: `Bearer ${token}`,
 		},
+	});
+	const [showAlert, setShowAlert] = useState({
+		show: false,
+		message: "",
 	});
 
 	useEffect(() => {
@@ -18,7 +23,17 @@ export const AuthProvider = ({ children }) => {
 
 	return (
 		<AuthContext.Provider
-			value={{ token, setToken, lsToken, config, setConfig }}
+			value={{
+				token,
+				setToken,
+				lsToken,
+				config,
+				setConfig,
+				setShowNewCat,
+				showNewCat,
+				showAlert,
+				setShowAlert,
+			}}
 		>
 			{children}
 		</AuthContext.Provider>

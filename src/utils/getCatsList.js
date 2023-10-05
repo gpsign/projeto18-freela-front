@@ -6,7 +6,9 @@ export async function getAllCatsList(setCatsList, setShowAlert, config) {
 		const catsRes = await axios.get(`${VITE_API_URL}/cats`, config);
 		setCatsList(catsRes.data);
 	} catch (err) {
-		console.log(err);
+		if (err.code === "ERR_NETWORK") {
+			setAlert({ message: "Erro de Conexão", show: true });
+		}
 		setShowAlert({ show: true, message: "Por favor, faça login novamente!" });
 	}
 }

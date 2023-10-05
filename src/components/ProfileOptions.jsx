@@ -1,15 +1,24 @@
 import styled from "styled-components";
-import { BiLogOut, BiSolidUser } from "react-icons/bi";
+import { BiLogOut, BiSolidUser, BiPlus } from "react-icons/bi";
 import { logout } from "../utils/logout.js";
 import { AuthContext } from "../context/authentication.jsx";
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 
-export function ProfileOptions({ expanded }) {
+export function ProfileOptions({ expanded, set }) {
 	const navigate = useNavigate();
-	const { setToken, setConfig } = useContext(AuthContext);
+	const { setToken, setConfig, setShowNewCat } = useContext(AuthContext);
 	return (
 		<OptionsWindow expanded={expanded}>
+			<Option
+				onClick={() => {
+					setShowNewCat(true);
+					set(false);
+				}}
+			>
+				<PlusIco />
+				Novo Gato
+			</Option>
 			<Option>
 				<UserIco />
 				Meu Perfil
@@ -25,6 +34,11 @@ export function ProfileOptions({ expanded }) {
 		</OptionsWindow>
 	);
 }
+
+const PlusIco = styled(BiPlus)`
+	font-size: 22px;
+	margin-right: 10px;
+`;
 
 const UserIco = styled(BiSolidUser)`
 	font-size: 22px;
@@ -72,7 +86,7 @@ const OptionsWindow = styled.ul`
 	padding: 5px;
 
 	position: absolute;
-	top: ${({ expanded }) => (expanded === "true" ? "50px" : "-50px")};
+	top: ${({ expanded }) => (expanded === "true" ? "50px" : "-85px")};
 	right: 40px;
 	z-index: -1;
 	filter: drop-shadow(0px 0px 5px gray);

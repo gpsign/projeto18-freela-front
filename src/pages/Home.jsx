@@ -12,6 +12,7 @@ import {
 import { CentralizerContainer } from "../styled/CommonStyles.js";
 import { Alert } from "../components/Alert.jsx";
 import { getPopularTagsList } from "../utils/getPopularTagsList.js";
+import { NewCatWindow } from "../components/NewCatWindow.jsx";
 
 var timeout = null;
 
@@ -21,16 +22,15 @@ export default function Home() {
 	const [filter, setFilter] = useState("name");
 	const [searchValue, setSearchValue] = useState("");
 	const navigate = useNavigate();
-	const { token, setToken, config, setConfig } = useContext(AuthContext);
-	const [showAlert, setShowAlert] = useState({
-		show: false,
-		message: "",
-	});
-	const [newCat, setNewCat] = useState({
-		name: "",
-		url: "",
-		description: "",
-	});
+	const {
+		token,
+		setToken,
+		config,
+		setConfig,
+		showNewCat,
+		showAlert,
+		setShowAlert,
+	} = useContext(AuthContext);
 
 	const input = useRef(null);
 
@@ -48,13 +48,12 @@ export default function Home() {
 		<>
 			{showAlert.show && (
 				<Alert
-					message={showAlert.message}
 					onConfirm={() => {
 						logout(setConfig, setToken, navigate);
 					}}
-					setShow={setShowAlert}
 				/>
 			)}
+			{showNewCat && <NewCatWindow />}
 			<CentralizerContainer>
 				<Header />
 				<LeftBox>

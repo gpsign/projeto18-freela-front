@@ -3,50 +3,7 @@
 		<ElementsContainer>
 			<h2>Adicionar seu Miau</h2>
 
-			<form
-				onSubmit={(e) => {
-					e.preventDefault();
-					submitMiau();
-				}}
-			>
-				<input
-					placeholder='Nome do Miau'
-					onChange={(e) => {
-						setNewCat({ ...newCat, name: e.target.value });
-					}}
-					required
-				/>
-				<input
-					placeholder='URL da foto do modelo'
-					onChange={(e) => {
-						setNewCat({ ...newCat, url: e.target.value });
-					}}
-					required
-				/>
-				<textarea
-					placeholder='Tags (Separe por vírgulas!)'
-					onChange={(e) => {
-						setNewCat({ ...newCat, tags: e.target.value });
-					}}
-				/>
-				<textarea
-					placeholder='Descrição do Miau'
-					onChange={(e) => {
-						setNewCat({ ...newCat, description: e.target.value });
-					}}
-				/>
-				<div className='buttonContainer'>
-					<button type='submit'>Adicionar!</button>
-					<button
-						className='Close'
-						onClick={() => {
-							setShowAddCat("false");
-						}}
-					>
-						<p>X</p>
-					</button>
-				</div>
-			</form>
+			
 		</ElementsContainer>
 	)}
 </ScreenDarknessContainer>;

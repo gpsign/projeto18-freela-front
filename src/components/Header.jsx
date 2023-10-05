@@ -20,7 +20,10 @@ export function Header() {
 					<ProfilePic src='http://t0.gstatic.com/licensed-image?q=tbn:ANd9GcSQAu_WEwlZdCo_qoDpOSzMB-hXMklczWCoAEj37cwudY7Qcqi_bxjt6gyGb9D48sa9zLsXnkFM-gQkvq-BmRA' />
 					<Arrow expanded={isOptionsExpanded.toString()} />
 				</Profile>
-				<ProfileOptions expanded={isOptionsExpanded.toString()} />
+				<ProfileOptions
+					expanded={isOptionsExpanded.toString()}
+					set={setIsOptionsExpanded}
+				/>
 			</HeaderContent>
 		</Position>
 	);

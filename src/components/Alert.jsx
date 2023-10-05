@@ -1,15 +1,20 @@
+import { useContext } from "react";
 import styled from "styled-components";
+import { AuthContext } from "../context/authentication.jsx";
 
-export function Alert({ setShow, onConfirm, message }) {
+export function Alert({ onConfirm }) {
+	const { setShowAlert, showAlert } = useContext(AuthContext);
 	return (
 		<Behind>
 			<AlertContainer>
 				<h2>ERRO</h2>
-				<Message>{message ? message : "Erro desconhecido"}</Message>
+				<Message>
+					{showAlert.message ? showAlert.message : "Erro desconhecido"}
+				</Message>
 				<button
 					onClick={() => {
 						onConfirm && onConfirm();
-						setShow({
+						setShowAlert({
 							show: false,
 							message: "",
 						});

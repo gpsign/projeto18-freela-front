@@ -14,11 +14,8 @@ import { Alert } from "../components/Alert.jsx";
 
 export default function Login() {
 	const [loginInputs, setLoginInputs] = useState({ email: "", password: "" });
-	const { token, setToken, setConfig } = useContext(AuthContext);
-	const [showAlert, setShowAlert] = useState({
-		show: false,
-		message: "",
-	});
+	const { token, setToken, setConfig, setShowAlert, showAlert } =
+		useContext(AuthContext);
 	const navigate = useNavigate();
 
 	useEffect(() => {
@@ -27,9 +24,7 @@ export default function Login() {
 
 	return (
 		<>
-			{showAlert.show && (
-				<Alert message={showAlert.message} setShow={setShowAlert} />
-			)}
+			{showAlert.show && <Alert />}
 			<CentralizerContainer>
 				<ElementsContainer width={"450px"} height={"550px"}>
 					<h2>LOGIN</h2>
