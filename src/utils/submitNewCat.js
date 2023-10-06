@@ -1,6 +1,7 @@
 import axios from "axios";
 
-export async function submitNewCat(newCat, config) {
+export async function submitNewCat(newCat, AuthInfo) {
+	const { config } = AuthInfo;
 	const VITE_API_URL = import.meta.env.VITE_API_URL;
 	try {
 		const res = await axios.post(`${VITE_API_URL}/cats`, newCat, config);

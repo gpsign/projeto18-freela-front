@@ -7,33 +7,36 @@ import { useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/authentication.jsx";
 import { redirectHomeIfToken, submitSignup } from "../utils/index.js";
+import { DataContext } from "../context/data.jsx";
+import { Alert } from "../components/Alert.jsx";
+
+const DefaultSignUp = {
+	name: "",
+	number: "",
+	cpf: "",
+	password: "",
+	confirmPassword: "",
+};
 
 export default function SignUp() {
-	const [signupData, setSignupData] = useState({
-		name: "",
-		number: "",
-		cpf: "",
-		password: "",
-		confirmPassword: "",
-	});
-
-	const { token } = useContext(AuthContext);
-
+	const [signupData, setSignupData] = useState(DefaultSignUp);
+	const AuthInfo = useContext(AuthContext);
+	const DataInfo = useContext(DataContext);
 	const navigate = useNavigate();
 
 	useEffect(() => {
-		redirectHomeIfToken(token, navigate);
+		redirectHomeIfToken(AuthInfo, navigate);
 	}, []);
-
 
 	return (
 		<CentralizerContainer>
+			<Alert />
 			<ElementsContainer width={"450px"} height={"850px"} margin={"50px"}>
 				<h2>SIGN-UP</h2>
 				<form
-					onSubmit={(e) => {
+					onSubmit={async (e) => {
 						e.preventDefault();
-						submitSignup(signupData, navigate);
+						await submitSignup(signupData, DataInfo, navigate);
 					}}
 				>
 					<input

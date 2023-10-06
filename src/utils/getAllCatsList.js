@@ -1,14 +1,10 @@
 import axios from "axios";
 import { logout } from "./logout.js";
 
-export async function getAllCatsList(
-	setCatsList,
-	setShowAlert,
-	config,
-	setConfig,
-	setToken,
-	navigate
-) {
+export async function getAllCatsList(DataInfo, AuthInfo) {
+	const { setCatsList, setAlert } = DataInfo;
+	const { config, setConfig, setToken } = AuthInfo;
+
 	const VITE_API_URL = import.meta.env.VITE_API_URL;
 	try {
 		const catsRes = await axios.get(`${VITE_API_URL}/cats`, config);
@@ -18,7 +14,7 @@ export async function getAllCatsList(
 			setAlert({ message: "Erro de Conexão", show: true });
 		}
 
-		setShowAlert({
+		setAlert({
 			show: true,
 			message: "Por favor, faça login novamente!",
 			onConfirm: function () {

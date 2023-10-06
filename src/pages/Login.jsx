@@ -2,29 +2,28 @@ import {
 	CentralizerContainer,
 	ElementsContainer,
 	StyledLink,
+	InputContainer,
 } from "../styled/CommonStyles";
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { submitLogin, redirectHomeIfToken } from "../utils/index.js";
-import { AuthContext } from "../context/authentication.jsx";
-import { useEffect } from "react";
-import { HiOutlineMail, HiOutlineLockClosed } from "react-icons/hi";
-import styled from "styled-components";
+import { AuthContext, DataContext } from "../context/index.js";
 import { Alert } from "../components/Alert.jsx";
+import { MailIco, LockIco } from "../styled/Icons.js";
 
 export default function Login() {
 	const [loginInputs, setLoginInputs] = useState({ email: "", password: "" });
-	const { token, setToken, setConfig, setShowAlert, showAlert, setUserPhoto } =
-		useContext(AuthContext);
+	const DataInfo = useContext(DataContext);
+	const AuthInfo = useContext(AuthContext);
 	const navigate = useNavigate();
 
 	useEffect(() => {
-		redirectHomeIfToken(token, navigate);
+		redirectHomeIfToken(AuthInfo, navigate);
 	}, []);
 
 	return (
 		<>
-			{showAlert.show && <Alert />}
+			<Alert />
 			<CentralizerContainer>
 				<ElementsContainer width={"450px"} height={"510px"} margin={"200px"}>
 					<h2>LOGIN</h2>
@@ -32,14 +31,8 @@ export default function Login() {
 						autoComplete='on'
 						onSubmit={async (e) => {
 							e.preventDefault();
-							await submitLogin(
-								loginInputs,
-								setToken,
-								setConfig,
-								setShowAlert,
-								setUserPhoto,
-								navigate
-							);
+							await submitLogin(loginInputs, DataInfo, AuthInfo);
+							navigate("/home");
 						}}
 					>
 						<InputContainer>
@@ -76,23 +69,3 @@ export default function Login() {
 		</>
 	);
 }
-
-const LockIco = styled(HiOutlineLockClosed)`
-	position: absolute;
-	top: 28px;
-	left: 10px;
-	font-size: 24px;
-	color: #6a6c6f;
-`;
-
-const MailIco = styled(HiOutlineMail)`
-	position: absolute;
-	top: 28px;
-	left: 10px;
-	font-size: 24px;
-	color: #6a6c6f;
-`;
-const InputContainer = styled.div`
-	width: 100%;
-	position: relative;
-`;

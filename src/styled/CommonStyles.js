@@ -1,7 +1,23 @@
 import { styled } from "styled-components";
 import { Link } from "react-router-dom";
 
-const ElementsContainer = styled.div`
+export const Behind = styled.div`
+	width: 100vw;
+	height: 100vh;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	position: absolute;
+	top: 0;
+	left: 0;
+
+	background-color: rgba(0, 0, 0, 0.6);
+	z-index: 10;
+`;
+
+export const ElementsContainer = styled.div`
 	width: ${({ width }) => width};
 	height: ${({ height }) => height};
 
@@ -109,7 +125,7 @@ const ElementsContainer = styled.div`
 	}
 `;
 
-const StyledLink = styled(Link)`
+export const StyledLink = styled(Link)`
 	font-size: 18px;
 	text-decoration: none;
 	color: black;
@@ -126,7 +142,12 @@ const StyledLink = styled(Link)`
 	}
 `;
 
-const CentralizerContainer = styled.div`
+export const InputContainer = styled.div`
+	width: 100%;
+	position: relative;
+`;
+
+export const CentralizerContainer = styled.div`
 	width: 100vw;
 	height: 100vh;
 
@@ -143,5 +164,3 @@ const CentralizerContainer = styled.div`
 		rgba(219, 219, 219, 1) 100%
 	);
 `;
-
-export { ElementsContainer, StyledLink, CentralizerContainer };

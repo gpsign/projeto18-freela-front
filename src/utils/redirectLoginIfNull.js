@@ -1,4 +1,5 @@
-export function redirectLoginIfNull(token, navigate) {
+export function redirectLoginIfNull(AuthInfo, navigate) {
+	const { token } = AuthInfo;
 	if (token === "null") {
 		navigate("/");
 	}
