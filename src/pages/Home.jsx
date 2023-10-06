@@ -1,6 +1,6 @@
 import { styled } from "styled-components";
 import { CatCard, Header } from "../components/index.js";
-import { useState, useEffect, useContext, useRef } from "react";
+import { useState, useEffect, useContext, useRef, Fragment } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/authentication.jsx";
 import {
@@ -21,6 +21,7 @@ export default function Home() {
 	const [tagsList, setTagsList] = useState([]);
 	const [filter, setFilter] = useState("name");
 	const [searchValue, setSearchValue] = useState("");
+	const [selectedTag, setSelectedTag] = useState("");
 	const navigate = useNavigate();
 	const {
 		token,
@@ -60,7 +61,7 @@ export default function Home() {
 
 	return (
 		<>
-			{showNewCat && <NewCatWindow />}
+			{showNewCat && <NewCatWindow setCatsList={setCatsList} />}
 			{showAlert.show && <Alert />}
 			<CentralizerContainer>
 				<Header />
@@ -109,22 +110,39 @@ export default function Home() {
 					/>
 					<TagsTitle>Tags Populares:</TagsTitle>
 					<PopularTags>
-						{tagsList.map((row) => {
+						{tagsList.map((row, i) => {
 							return (
-								<>
-									<Division />
+								<Fragment key={"Fragment " + row.tag}>
+									<Division key={"Division " + row.tag} />
 									<TagLine
+										key={"Line " + row.tag}
+										className={selectedTag === row.tag ? "selected" : ""}
 										onClick={() => {
-											setSearchValue(row.tag.toUpperCase());
-											setFilter("tags");
-											searchCats(setCatsList, row.tag, "tags", config);
-											input.current.value = row.tag;
+											if (selectedTag === row.tag) {
+												getAllCatsList(
+													setCatsList,
+													setShowAlert,
+													config,
+													setConfig,
+													setToken,
+													navigate
+												);
+												input.current.value = "";
+												setSelectedTag("");
+												setSearchValue("");
+											} else {
+												setSelectedTag(row.tag);
+												setSearchValue(row.tag.toUpperCase());
+												setFilter("tags");
+												searchCats(setCatsList, row.tag, "tags", config);
+												input.current.value = row.tag;
+											}
 										}}
 									>
-										<p>{row.tag.toUpperCase()}</p>
-										<p>{row.popularity}</p>
+										<p key={"Name" + row.tag}>{row.tag.toUpperCase()}</p>
+										<p key={"Count " + row.tag}>{row.popularity}</p>
 									</TagLine>
-								</>
+								</Fragment>
 							);
 						})}
 						<Division />
@@ -174,7 +192,7 @@ const Options = styled.div`
 
 const LeftBox = styled.div`
 	width: 300px;
-	height: 630px;
+	height: 670px;
 
 	padding: 20px;
 
@@ -243,7 +261,7 @@ const SearchInput = styled.input`
 `;
 
 const TagsTitle = styled.h2`
-	margin-top: 30px;
+	margin-top: 25px;
 	margin-bottom: 10px;
 `;
 
@@ -263,6 +281,11 @@ const PopularTags = styled.ul`
 	margin-top: 10px;
 	width: 100%;
 	height: fit-content;
+
+	.selected {
+		background: rgb(41, 41, 41);
+		background: radial-gradient(circle, #535353 0%, #464646 100%);
+	}
 `;
 
 const TagLine = styled.li`
@@ -271,7 +294,7 @@ const TagLine = styled.li`
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	padding: 8px;
+	padding: 9px;
 	border-radius: 8px;
 
 	& > p {

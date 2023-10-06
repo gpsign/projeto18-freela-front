@@ -2,7 +2,7 @@ import { styled } from "styled-components";
 
 export function CatCard({ cat }) {
 	return (
-		<CatContent url={cat.url}>
+		<CatContent $url={cat.url}>
 			<Gradient />
 			<CatInfo>
 				<CatName>{cat.catName}</CatName>
@@ -29,18 +29,17 @@ const Gradient = styled.div`
 
 const CatContent = styled.div`
 	width: 300px;
-	height: 300px;
+	height: 320px;
 
 	position: relative;
 	z-index: 1;
 
-	background-image: url(${({ url }) => url});
+	background-image: url(${({ $url }) => $url});
 	background-size: contain;
-	background-repeat: no-repeat;
 
 	border-radius: 8px;
 
-	padding-top: 150px;
+	padding-top: 170px;
 	overflow-y: scroll;
 
 	filter: drop-shadow(0px 0px 5px gray);

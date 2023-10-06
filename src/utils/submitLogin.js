@@ -5,23 +5,29 @@ export async function submitLogin(
 	setToken,
 	setConfig,
 	setAlert,
+	setUserPhoto,
 	navigate
 ) {
 	const VITE_API_URL = import.meta.env.VITE_API_URL;
 
 	try {
 		const loginRes = await axios.post(`${VITE_API_URL}/sign-in`, loginInputs);
-		const newToken = loginRes.data.token;
+		const res = loginRes.data;
 
-		localStorage.setItem("token", newToken);
-		setToken(newToken);
+		localStorage.setItem(
+			"user",
+			JSON.stringify({ token: res.token, photoUrl: res.user.url })
+		);
+		setUserPhoto(res.user.url);
+		setToken(res.token);
 		setConfig({
 			headers: {
-				Authorization: `Bearer ${newToken}`,
+				Authorization: `Bearer ${res.token}`,
 			},
 		});
 		navigate("/home");
 	} catch (err) {
+		console.log(err);
 		if (err.code === "ERR_NETWORK") {
 			setAlert({ message: "Erro de Conexão", show: true });
 		}

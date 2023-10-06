@@ -3,19 +3,23 @@ import { useContext, useState } from "react";
 import DefaultPic from "../../public/images/Default.jpg";
 import { submitNewCat } from "../utils/submitNewCat.js";
 import { AuthContext } from "../context/authentication.jsx";
+import { getAllCatsList } from "../utils/getCatsList.js";
+import { useNavigate } from "react-router-dom";
 
 function isValidImage(url) {
 	return /^https?:\/\/.+\.(jpg|jpeg|png|webp|avif|gif|svg)$/.test(url);
 }
 
-export function NewCatWindow() {
+export function NewCatWindow({ setCatsList }) {
 	const [newCat, setNewCat] = useState({
 		name: "",
 		url: "",
 		description: "",
 		tags: "",
 	});
-	const { config, setShowNewCat, setShowAlert } = useContext(AuthContext);
+	const { config, setShowNewCat, setShowAlert, setToken } =
+		useContext(AuthContext);
+	const navigate = useNavigate();
 
 	return (
 		<Behind>
@@ -32,6 +36,13 @@ export function NewCatWindow() {
 								tags: "",
 							});
 							setShowNewCat(false);
+							getAllCatsList(
+								setCatsList,
+								setShowAlert,
+								config,
+								setToken,
+								navigate
+							);
 						} else {
 							setShowAlert({ show: true, message: "Erro ao enviar" });
 						}

@@ -3,13 +3,19 @@ import { useState, createContext, useEffect } from "react";
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-	let lsToken = localStorage.getItem("token");
+	let userLs = localStorage.getItem("user");
+	if (userLs === null) {
+		userLs = {
+			token: "",
+			photoUrl: null,
+		};
+	} else userLs = JSON.parse(userLs);
 
-	const [token, setToken] = useState(lsToken);
+	const [token, setToken] = useState(userLs.token);
 	const [showNewCat, setShowNewCat] = useState(false);
 	const [config, setConfig] = useState({
 		headers: {
-			Authorization: `Bearer ${token}`,
+			Authorization: `Bearer ${userLs.token}`,
 		},
 	});
 	const [showAlert, setShowAlert] = useState({
@@ -17,23 +23,26 @@ export const AuthProvider = ({ children }) => {
 		message: "",
 		onConfirm: undefined,
 	});
+	const [userPhoto, setUserPhoto] = useState(userLs.photoUrl);
 
-	useEffect(() => {
-		setToken(localStorage.getItem("token"));
-	}, []);
+	// useEffect(() => {
+	// 	setToken(userLs.token);
+	// }, []);
 
 	return (
 		<AuthContext.Provider
 			value={{
 				token,
 				setToken,
-				lsToken,
+				userLs,
 				config,
 				setConfig,
 				setShowNewCat,
 				showNewCat,
 				showAlert,
 				setShowAlert,
+				userPhoto,
+				setUserPhoto,
 			}}
 		>
 			{children}

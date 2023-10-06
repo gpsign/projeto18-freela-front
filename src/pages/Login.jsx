@@ -14,7 +14,7 @@ import { Alert } from "../components/Alert.jsx";
 
 export default function Login() {
 	const [loginInputs, setLoginInputs] = useState({ email: "", password: "" });
-	const { token, setToken, setConfig, setShowAlert, showAlert } =
+	const { token, setToken, setConfig, setShowAlert, showAlert, setUserPhoto } =
 		useContext(AuthContext);
 	const navigate = useNavigate();
 
@@ -37,6 +37,7 @@ export default function Login() {
 								setToken,
 								setConfig,
 								setShowAlert,
+								setUserPhoto,
 								navigate
 							);
 						}}

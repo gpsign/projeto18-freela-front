@@ -5,11 +5,11 @@ import { AuthContext } from "../context/authentication.jsx";
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 
-export function ProfileOptions({ expanded, set }) {
+export function ProfileOptions({ $expanded, set }) {
 	const navigate = useNavigate();
 	const { setToken, setConfig, setShowNewCat } = useContext(AuthContext);
 	return (
-		<OptionsWindow expanded={expanded}>
+		<OptionsWindow $expanded={$expanded}>
 			<Option
 				onClick={() => {
 					setShowNewCat(true);
@@ -86,7 +86,7 @@ const OptionsWindow = styled.ul`
 	padding: 5px;
 
 	position: absolute;
-	top: ${({ expanded }) => (expanded === "true" ? "50px" : "-85px")};
+	top: ${({ $expanded }) => ($expanded === "true" ? "50px" : "-85px")};
 	right: 40px;
 	z-index: -1;
 	filter: drop-shadow(0px 0px 5px gray);

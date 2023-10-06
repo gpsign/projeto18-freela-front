@@ -2,11 +2,14 @@ import { useNavigate } from "react-router-dom";
 import { styled } from "styled-components";
 import { IoIosArrowDown } from "react-icons/io";
 import { ProfileOptions } from "./ProfileOptions.jsx";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { AuthContext } from "../context/authentication.jsx";
+import DefaultPic from "/images/Default.jpg";
 
 export function Header() {
 	const navigate = useNavigate();
 	const [isOptionsExpanded, setIsOptionsExpanded] = useState(false);
+	const { userPhoto } = useContext(AuthContext);
 
 	return (
 		<Position>
@@ -17,11 +20,11 @@ export function Header() {
 						setIsOptionsExpanded(!isOptionsExpanded);
 					}}
 				>
-					<ProfilePic src='http://t0.gstatic.com/licensed-image?q=tbn:ANd9GcSQAu_WEwlZdCo_qoDpOSzMB-hXMklczWCoAEj37cwudY7Qcqi_bxjt6gyGb9D48sa9zLsXnkFM-gQkvq-BmRA' />
-					<Arrow expanded={isOptionsExpanded.toString()} />
+					<ProfilePic src={userPhoto ? userPhoto : DefaultPic} />
+					<Arrow $expanded={isOptionsExpanded.toString()} />
 				</Profile>
 				<ProfileOptions
-					expanded={isOptionsExpanded.toString()}
+					$expanded={isOptionsExpanded.toString()}
 					set={setIsOptionsExpanded}
 				/>
 			</HeaderContent>
@@ -92,7 +95,7 @@ const Arrow = styled(IoIosArrowDown)`
 	font-size: 24px;
 
 	transform: rotate(
-		${({ expanded }) => (expanded === "true" ? "-180deg" : "0deg")}
+		${({ $expanded }) => ($expanded === "true" ? "-180deg" : "0deg")}
 	);
 	transition: all 0.3s;
 `;
