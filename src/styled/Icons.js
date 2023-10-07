@@ -11,6 +11,7 @@ import {
 	BiEnvelope,
 	BiLockAlt,
 } from "react-icons/bi";
+import { TbLockCheck, TbLock } from "react-icons/tb";
 
 export const PhoneIco = styled(BiPhone)`
 	position: absolute;
@@ -22,13 +23,13 @@ export const PhoneIco = styled(BiPhone)`
 
 export const CheckIco = styled(BiCheck)`
 	position: absolute;
-	top: 36px;
-	left: 14px;
-	font-size: 15px;
+	top: 28px;
+	left: 10px;
+	font-size: 22px;
 	color: #4a4c4f;
 `;
 
-export const AltLockIco = styled(BiLockAlt)`
+export const CheckLockIco = styled(TbLockCheck)`
 	position: absolute;
 	top: 28px;
 	left: 10px;
@@ -52,7 +53,7 @@ export const CardIco = styled(BiIdCard)`
 	color: #6a6c6f;
 `;
 
-export const LockIco = styled(BiLock)`
+export const LockIco = styled(TbLock)`
 	position: absolute;
 	top: 28px;
 	left: 10px;

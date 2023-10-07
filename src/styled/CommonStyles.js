@@ -17,9 +17,9 @@ export const Behind = styled.div`
 	z-index: 10;
 `;
 
-export const ElementsContainer = styled.div`
-	width: ${({ width }) => width};
-	height: ${({ height }) => height};
+export const FormContainer = styled.div`
+	width: 450px;
+	height: fit-content;
 
 	display: flex;
 	flex-direction: column;
@@ -27,8 +27,6 @@ export const ElementsContainer = styled.div`
 	align-items: center;
 
 	border-radius: 3px;
-
-	margin-top: ${({ margin }) => margin};
 
 	padding: 15px 0px 15px 0px;
 
@@ -130,14 +128,14 @@ export const StyledLink = styled(Link)`
 	text-decoration: none;
 	color: black;
 
-	margin-top: 20px;
+	margin-top: 10px;
 	margin-bottom: 10px;
 	text-align: center;
 
 	cursor: pointer;
 
 	.underline {
-		text-decoration: underline;
+		border-bottom: 1px solid black;
 		filter: drop-shadow(1px 1px 6px gray);
 	}
 `;
@@ -153,6 +151,7 @@ export const CentralizerContainer = styled.div`
 
 	display: flex;
 	justify-content: center;
+	align-items: ${({ $align }) => ($align === "true" ? "center" : "")};
 
 	overflow-y: hidden;
 	overflow-x: hidden;

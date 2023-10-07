@@ -1,6 +1,6 @@
 import {
 	CentralizerContainer,
-	ElementsContainer,
+	FormContainer,
 	InputContainer,
 	StyledLink,
 } from "../styled/CommonStyles";
@@ -11,14 +11,12 @@ import { redirectHomeIfToken, submitSignup } from "../utils/index.js";
 import { DataContext } from "../context/data.jsx";
 import { Alert } from "../components/Alert.jsx";
 import {
-	AltLockIco,
+	CheckLockIco,
 	CardIco,
-	CheckIco,
 	LockIco,
 	MailIco,
 	NameIco,
 	PhoneIco,
-	UserIco,
 } from "../styled/Icons.js";
 
 const DefaultSignUp = {
@@ -40,9 +38,9 @@ export default function SignUp() {
 	}, []);
 
 	return (
-		<CentralizerContainer>
+		<CentralizerContainer $align={"true"}>
 			<Alert />
-			<ElementsContainer width={"450px"} height={"850px"} margin={"50px"}>
+			<FormContainer>
 				<h2>SIGN-UP</h2>
 				<form
 					onSubmit={async (e) => {
@@ -119,8 +117,7 @@ export default function SignUp() {
 						/>
 					</InputContainer>
 					<InputContainer>
-						<AltLockIco />
-						<CheckIco />
+						<CheckLockIco />
 						<input
 							placeholder='Confirme sua senha'
 							type='password'
@@ -139,7 +136,7 @@ export default function SignUp() {
 				<StyledLink to={"/"}>
 					Já possui uma conta? <span className='underline'>Entre agora!</span>
 				</StyledLink>
-			</ElementsContainer>
+			</FormContainer>
 		</CentralizerContainer>
 	);
 }

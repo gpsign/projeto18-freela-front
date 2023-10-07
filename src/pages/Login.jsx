@@ -1,6 +1,6 @@
 import {
 	CentralizerContainer,
-	ElementsContainer,
+	FormContainer,
 	StyledLink,
 	InputContainer,
 } from "../styled/CommonStyles";
@@ -21,20 +21,19 @@ export default function Login() {
 		redirectHomeIfToken(AuthInfo, navigate);
 	}, []);
 
+	async function submit(e) {
+		e.preventDefault();
+		await submitLogin(loginInputs, DataInfo, AuthInfo);
+		navigate("/home");
+	}
+
 	return (
 		<>
 			<Alert />
-			<CentralizerContainer>
-				<ElementsContainer width={"450px"} height={"510px"} margin={"200px"}>
+			<CentralizerContainer $align={"true"}>
+				<FormContainer>
 					<h2>LOGIN</h2>
-					<form
-						autoComplete='on'
-						onSubmit={async (e) => {
-							e.preventDefault();
-							await submitLogin(loginInputs, DataInfo, AuthInfo);
-							navigate("/home");
-						}}
-					>
+					<form autoComplete='on' onSubmit={async (e) => await submit(e)}>
 						<InputContainer>
 							<MailIco />
 							<input
@@ -64,7 +63,7 @@ export default function Login() {
 					<StyledLink to={"/signup"}>
 						Não tem uma conta? <span className='underline'>Cadastre-se!</span>
 					</StyledLink>
-				</ElementsContainer>
+				</FormContainer>
 			</CentralizerContainer>
 		</>
 	);
