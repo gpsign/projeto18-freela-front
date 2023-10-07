@@ -7,11 +7,30 @@ import {
 	BiUser,
 	BiCheck,
 	BiPhone,
-	BiLock,
 	BiEnvelope,
-	BiLockAlt,
 } from "react-icons/bi";
 import { TbLockCheck, TbLock } from "react-icons/tb";
+import { IoMdArrowRoundBack } from "react-icons/io";
+
+export const BackArrow = styled(IoMdArrowRoundBack)`
+	border-radius: 100%;
+
+	font-size: 42px;
+
+	padding: 5px;
+	margin-right: 10px;
+
+	cursor: pointer;
+
+	filter: drop-shadow(0px 2px 3px rgba(0, 0, 0, 0.3));
+
+	background: rgb(247, 247, 247);
+	background: radial-gradient(
+		circle,
+		rgba(247, 247, 247, 1) 15%,
+		rgba(255, 255, 255, 1) 100%
+	);
+`;
 
 export const PhoneIco = styled(BiPhone)`
 	position: absolute;

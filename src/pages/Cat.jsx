@@ -3,6 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { Alert, Header } from "../components/index.js";
 import { CentralizerContainer } from "../styled/CommonStyles.js";
 import styled from "styled-components";
+import { BackArrow } from "../styled/Icons.js";
 
 export function Cat({ cat }) {
 	const { catId } = useParams();
@@ -17,7 +18,11 @@ export function Cat({ cat }) {
 			<Alert />
 			<Header />
 			<CentralizerContainer>
-				<DataContainer></DataContainer>
+				<DataContainer>
+					<GoBack>
+						<BackArrow onClick={() => navigate("/home")} />
+					</GoBack>
+				</DataContainer>
 			</CentralizerContainer>
 		</>
 	);
@@ -27,7 +32,7 @@ const DataContainer = styled.div`
 	width: 800px;
 	height: 900px;
 
-    margin-top: 50px;
+	margin-top: 50px;
 
 	display: flex;
 	flex-direction: column;
@@ -36,7 +41,7 @@ const DataContainer = styled.div`
 
 	border-radius: 4px;
 
-	padding: 15px 0px 15px 0px;
+	padding: 20px;
 
 	filter: drop-shadow(0px 5px 5px gray);
 
@@ -50,4 +55,11 @@ const DataContainer = styled.div`
 	font-family: "ProximaNovaMedium";
 
 	overflow-y: scroll;
+`;
+
+const GoBack = styled.div`
+	width: 100%;
+
+	display: flex;
+	align-items: center;
 `;
