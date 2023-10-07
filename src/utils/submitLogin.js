@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export async function submitLogin(loginInputs, DataInfo, AuthInfo) {
+export async function submitLogin(loginInputs, DataInfo, AuthInfo, navigate) {
 	const VITE_API_URL = import.meta.env.VITE_API_URL;
 	const { setUserPhoto, setAlert } = DataInfo;
 	const { setConfig, setToken } = AuthInfo;
@@ -20,6 +20,8 @@ export async function submitLogin(loginInputs, DataInfo, AuthInfo) {
 				Authorization: `Bearer ${res.token}`,
 			},
 		});
+
+		navigate("/home");
 	} catch (err) {
 		console.log(err);
 		if (err.code === "ERR_NETWORK") {

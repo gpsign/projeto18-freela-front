@@ -23,8 +23,7 @@ export function Login() {
 
 	async function submit(e) {
 		e.preventDefault();
-		await submitLogin(loginInputs, DataInfo, AuthInfo);
-		navigate("/home");
+		await submitLogin(loginInputs, DataInfo, AuthInfo, navigate);
 	}
 
 	return (

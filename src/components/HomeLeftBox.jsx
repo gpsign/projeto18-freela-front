@@ -44,7 +44,7 @@ export function HomeLeftBox() {
 						className={filter === "name" ? "selected" : ""}
 						onClick={() => {
 							setFilter("name");
-							searchCats(DataInfo, AuthInfo);
+							searchCats({ ...DataInfo, filter: "name" }, AuthInfo);
 						}}
 					>
 						Nome
