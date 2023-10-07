@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 
 export function Alert() {
 	const AuthInfo = useContext(AuthContext);
+	const DataInfo = useContext(DataContext);
 	const { setAlert, alert } = useContext(DataContext);
 	const navigate = useNavigate();
 
@@ -22,7 +23,7 @@ export function Alert() {
 						<button
 							onClick={() => {
 								if (alert.onConfirm === "logout") {
-									logout(AuthInfo, navigate);
+									logout(DataInfo, AuthInfo, navigate);
 								}
 								setAlert(DefaultAlert);
 							}}

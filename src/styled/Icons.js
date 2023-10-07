@@ -11,16 +11,16 @@ import {
 } from "react-icons/bi";
 import { TbLockCheck, TbLock } from "react-icons/tb";
 import { IoMdArrowRoundBack } from "react-icons/io";
+import { BsPhone } from "react-icons/bs";
+import { AiOutlineMail } from "react-icons/ai";
 
 export const BackArrow = styled(IoMdArrowRoundBack)`
-	border-radius: 100%;
-
-	font-size: 42px;
-
+	font-size: 56px;
 	padding: 5px;
-	margin-right: 10px;
+	margin: 68px 15px 0px 0px;
 
-	cursor: pointer;
+	position: sticky;
+	top: 68px;
 
 	filter: drop-shadow(0px 2px 3px rgba(0, 0, 0, 0.3));
 
@@ -30,6 +30,26 @@ export const BackArrow = styled(IoMdArrowRoundBack)`
 		rgba(247, 247, 247, 1) 15%,
 		rgba(255, 255, 255, 1) 100%
 	);
+
+	&:active {
+		transform: translateY(2px);
+		transition: transform 0.1s ease-out;
+	}
+
+	cursor: pointer;
+	border-radius: 100%;
+`;
+
+export const EmailIco = styled(AiOutlineMail)`
+	margin-right: 7px;
+	font-size: 32px;
+	color: black;
+`;
+
+export const SmartPhoneIco = styled(BsPhone)`
+	margin-right: 5px;
+	font-size: 32px;
+	color: black;
 `;
 
 export const PhoneIco = styled(BiPhone)`

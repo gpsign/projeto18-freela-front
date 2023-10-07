@@ -8,7 +8,7 @@ import {
 	ProfilePic,
 } from "../styled/Header.js";
 import { ProfileOptions } from "./ProfileOptions.jsx";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import DefaultPic from "/images/Default.jpg";
 import { DataContext } from "../context/index.js";
 

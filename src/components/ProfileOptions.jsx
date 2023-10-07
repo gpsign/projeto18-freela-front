@@ -28,7 +28,7 @@ export function ProfileOptions() {
 			</Option>
 			<Option
 				onClick={() => {
-					logout(AuthInfo, navigate);
+					logout(DataInfo, AuthInfo, navigate);
 				}}
 			>
 				<LogOutIco />

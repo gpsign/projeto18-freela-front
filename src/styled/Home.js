@@ -2,15 +2,13 @@ import styled from "styled-components";
 
 export const CatsGrid = styled.div`
 	width: fit-content;
-	max-height: 835px;
 	height: fit-content;
 
 	border-radius: 4px;
 	margin-left: 20px;
-	margin-top: 130px;
+	margin-top: 50px;
 
 	padding: 10px;
-	overflow-y: scroll;
 
 	display: grid;
 	grid-gap: 30px;

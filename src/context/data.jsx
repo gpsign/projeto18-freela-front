@@ -19,6 +19,7 @@ export const DataProvider = ({ children }) => {
 	const [catsList, setCatsList] = useState([]);
 	const [tagsList, setTagsList] = useState([]);
 	const [searchValue, setSearchValue] = useState("");
+	const [catPage, setCatPage] = useState();
 
 	return (
 		<DataContext.Provider
@@ -39,6 +40,8 @@ export const DataProvider = ({ children }) => {
 				setTagsList,
 				searchValue,
 				setSearchValue,
+				catPage,
+				setCatPage,
 			}}
 		>
 			{children}

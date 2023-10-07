@@ -80,6 +80,7 @@ export const Tag = styled.div`
 	font-size: 10px;
 	color: white;
 `;
+
 export const Gradient = styled.div`
 	height: 10px;
 	background: linear-gradient(

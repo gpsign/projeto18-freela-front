@@ -32,11 +32,13 @@ export const LeftBox = styled.div`
 	width: 300px;
 	height: 670px;
 
+	position: sticky;
+	top: 60px;
+
 	padding: 20px;
 
 	border-radius: 8px;
 
-	margin-top: 140px;
 
 	background: rgb(41, 41, 41);
 	background: radial-gradient(circle, #414141 0%, #333333 100%);
