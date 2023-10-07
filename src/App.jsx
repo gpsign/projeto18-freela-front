@@ -3,6 +3,7 @@ import Reset from "./styled/Reset";
 import GlobalStyle from "./styled/GlobalStyle";
 import { AuthProvider, DataProvider } from "./context/index.js";
 import { SignUp, Login, Home, Cat } from "./pages/index.js";
+import { Profile } from "./pages/Profile.jsx";
 
 function App() {
 	return (
@@ -17,6 +18,7 @@ function App() {
 						<Route path='/home' element={<Home />} />
 						<Route path='/home' element={<Home />} />
 						<Route path='/cat/:catId' element={<Cat />} />
+						<Route path='/profile' element={<Profile />} />
 					</Routes>
 				</BrowserRouter>
 			</DataProvider>

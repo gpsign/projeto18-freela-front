@@ -9,13 +9,13 @@ import {
 } from "../styled/Header.js";
 import { ProfileOptions } from "./ProfileOptions.jsx";
 import { useContext } from "react";
-import DefaultPic from "/images/Default.jpg";
 import { DataContext } from "../context/index.js";
 
 export function Header() {
 	const navigate = useNavigate();
 	const { userPhoto, isOptionsExpanded, setIsOptionsExpanded } =
 		useContext(DataContext);
+
 
 	return (
 		<HeaderPosition>
@@ -26,7 +26,7 @@ export function Header() {
 						setIsOptionsExpanded(!isOptionsExpanded);
 					}}
 				>
-					<ProfilePic src={userPhoto ? userPhoto : DefaultPic} />
+					<ProfilePic src={userPhoto} />
 					<Arrow $expanded={isOptionsExpanded.toString()} />
 				</Profile>
 				<ProfileOptions />

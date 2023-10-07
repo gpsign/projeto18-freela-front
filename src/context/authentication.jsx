@@ -4,11 +4,11 @@ import { getUserLocalStorage } from "../utils/index.js";
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-	const userLs = getUserLocalStorage();
-	const [token, setToken] = useState(userLs.token);
+	const loginLs = getUserLocalStorage();
+	const [token, setToken] = useState(loginLs.token);
 	const [config, setConfig] = useState({
 		headers: {
-			Authorization: `Bearer ${userLs.token}`,
+			Authorization: `Bearer ${loginLs.token}`,
 		},
 	});
 
@@ -17,7 +17,7 @@ export const AuthProvider = ({ children }) => {
 			value={{
 				token,
 				setToken,
-				userLs,
+				loginLs,
 				config,
 				setConfig,
 			}}

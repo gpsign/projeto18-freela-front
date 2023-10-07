@@ -1,23 +1,35 @@
 import axios from "axios";
+import DefaultPhoto from "/images/Default.jpg";
 
 export async function submitLogin(loginInputs, DataInfo, AuthInfo, navigate) {
 	const VITE_API_URL = import.meta.env.VITE_API_URL;
-	const { setUserPhoto, setAlert } = DataInfo;
+	const { setAlert, setUser, setUserPhoto } = DataInfo;
 	const { setConfig, setToken } = AuthInfo;
 
 	try {
-		const loginRes = await axios.post(`${VITE_API_URL}/sign-in`, loginInputs);
-		const res = loginRes.data;
+		const res = await axios.post(`${VITE_API_URL}/sign-in`, loginInputs);
+		console.log(res);
+		const loginRes = res.data;
+		const token = loginRes.token;
+		const photo = loginRes.user.url ? loginRes.user.url : DefaultPhoto;
+		const user = {
+			...loginRes.user,
+			url: photo,
+		};
 
-		localStorage.setItem(
-			"user",
-			JSON.stringify({ token: res.token, photoUrl: res.user.url })
-		);
-		setUserPhoto(res.user.url);
-		setToken(res.token);
+		const local = {
+			token,
+			user,
+		};
+
+		localStorage.setItem("login", JSON.stringify(local));
+
+		setUserPhoto(photo);
+		setUser(res);
+		setToken(token);
 		setConfig({
 			headers: {
-				Authorization: `Bearer ${res.token}`,
+				Authorization: `Bearer ${token}`,
 			},
 		});
 

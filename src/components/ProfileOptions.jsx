@@ -22,7 +22,12 @@ export function ProfileOptions() {
 				<PlusIco />
 				Novo Gato
 			</Option>
-			<Option>
+			<Option
+				onClick={() => {
+					navigate("/profile");
+					setIsOptionsExpanded(false);
+				}}
+			>
 				<UserIco />
 				Meu Perfil
 			</Option>

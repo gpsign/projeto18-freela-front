@@ -1,12 +1,10 @@
 export function logout(DataInfo, AuthInfo, navigate) {
 	const { setConfig, setToken } = AuthInfo;
-	const { setCatPage, setAlert } = DataInfo;
+	const { setCatPage, setAlert, setIsOptionsExpanded } = DataInfo;
 
-	localStorage.setItem(
-		"user",
-		JSON.stringify({ token: "null", photoUrl: null })
-	);
+	localStorage.removeItem("login");
 
+	setIsOptionsExpanded(false);
 	setAlert({ show: false, message: "", onConfirm: "" });
 	setCatPage(undefined);
 	setConfig({});

@@ -10,9 +10,10 @@ export const DefaultAlert = {
 export const DataContext = createContext();
 
 export const DataProvider = ({ children }) => {
-	const userLs = getUserLocalStorage();
+	const loginLs = getUserLocalStorage();
 	const [alert, setAlert] = useState(DefaultAlert);
-	const [userPhoto, setUserPhoto] = useState(userLs.photoUrl);
+	const [user, setUser] = useState(loginLs.user);
+	const [userPhoto, setUserPhoto] = useState(loginLs.user.url);
 	const [showNewCat, setShowNewCat] = useState(false);
 	const [isOptionsExpanded, setIsOptionsExpanded] = useState(false);
 	const [filter, setFilter] = useState("name");
@@ -28,8 +29,6 @@ export const DataProvider = ({ children }) => {
 				showNewCat,
 				alert,
 				setAlert,
-				userPhoto,
-				setUserPhoto,
 				isOptionsExpanded,
 				setIsOptionsExpanded,
 				filter,
@@ -42,6 +41,10 @@ export const DataProvider = ({ children }) => {
 				setSearchValue,
 				catPage,
 				setCatPage,
+				user,
+				setUser,
+				userPhoto,
+				setUserPhoto,
 			}}
 		>
 			{children}

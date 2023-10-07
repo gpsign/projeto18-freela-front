@@ -1,5 +1,5 @@
 import { Tag } from "../styled/CatCard.js";
-import { TagLarge } from "../pages/Cat.jsx";
+import { TagLarge } from "../styled/Cat.js";
 
 export function ArrayToTags({ array, $size }) {
 	return array.map((tag, i) => {
