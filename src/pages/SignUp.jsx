@@ -27,7 +27,7 @@ const DefaultSignUp = {
 	confirmPassword: "",
 };
 
-export default function SignUp() {
+export function SignUp() {
 	const [signupData, setSignupData] = useState(DefaultSignUp);
 	const AuthInfo = useContext(AuthContext);
 	const DataInfo = useContext(DataContext);

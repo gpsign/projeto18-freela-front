@@ -153,8 +153,10 @@ export const CentralizerContainer = styled.div`
 	justify-content: center;
 	align-items: ${({ $align }) => ($align === "true" ? "center" : "")};
 
-	overflow-y: hidden;
+	overflow-y: scroll;
 	overflow-x: hidden;
+
+	padding: 50px;
 
 	background: rgb(237, 241, 247);
 	background: linear-gradient(

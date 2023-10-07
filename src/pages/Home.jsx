@@ -17,7 +17,7 @@ import {
 	CatsToGrid,
 } from "../components/index.js";
 
-export default function Home() {
+export function Home() {
 	const navigate = useNavigate();
 	const DataInfo = useContext(DataContext);
 	const AuthInfo = useContext(AuthContext);
@@ -38,8 +38,8 @@ export default function Home() {
 		<>
 			<NewCatWindow />
 			<Alert />
+			<Header />
 			<CentralizerContainer>
-				<Header />
 				<HomeLeftBox />
 				<CatsGrid>
 					<CatsToGrid />

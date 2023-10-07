@@ -20,7 +20,7 @@ export function Header() {
 	return (
 		<HeaderPosition>
 			<HeaderContent>
-				<Logo>Fashion Cats</Logo>
+				<Logo onClick={() => navigate("/home")}>Fashion Cats</Logo>
 				<Profile
 					onClick={() => {
 						setIsOptionsExpanded(!isOptionsExpanded);

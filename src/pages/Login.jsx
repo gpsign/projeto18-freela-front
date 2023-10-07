@@ -11,7 +11,7 @@ import { AuthContext, DataContext } from "../context/index.js";
 import { Alert } from "../components/Alert.jsx";
 import { MailIco, LockIco } from "../styled/Icons.js";
 
-export default function Login() {
+export function Login() {
 	const [loginInputs, setLoginInputs] = useState({ email: "", password: "" });
 	const DataInfo = useContext(DataContext);
 	const AuthInfo = useContext(AuthContext);

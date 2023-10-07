@@ -34,6 +34,7 @@ export const Logo = styled.h1`
 	font-size: 28px !important;
 
 	color: #ffffff;
+	cursor: pointer;
 `;
 
 export const Profile = styled.div`
