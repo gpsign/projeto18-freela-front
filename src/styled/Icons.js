@@ -1,8 +1,18 @@
 import styled from "styled-components";
-import { HiOutlineLockClosed, HiOutlineMail } from "react-icons/hi";
-import { BiPlus, BiSolidUser, BiLogOut } from "react-icons/bi";
+import {
+	BiPlus,
+	BiSolidUser,
+	BiLogOut,
+	BiIdCard,
+	BiUser,
+	BiCheck,
+	BiPhone,
+	BiLock,
+	BiEnvelope,
+	BiLockAlt,
+} from "react-icons/bi";
 
-export const LockIco = styled(HiOutlineLockClosed)`
+export const PhoneIco = styled(BiPhone)`
 	position: absolute;
 	top: 28px;
 	left: 10px;
@@ -10,7 +20,47 @@ export const LockIco = styled(HiOutlineLockClosed)`
 	color: #6a6c6f;
 `;
 
-export const MailIco = styled(HiOutlineMail)`
+export const CheckIco = styled(BiCheck)`
+	position: absolute;
+	top: 36px;
+	left: 14px;
+	font-size: 15px;
+	color: #4a4c4f;
+`;
+
+export const AltLockIco = styled(BiLockAlt)`
+	position: absolute;
+	top: 28px;
+	left: 10px;
+	font-size: 24px;
+	color: #6a6c6f;
+`;
+
+export const NameIco = styled(BiUser)`
+	position: absolute;
+	top: 28px;
+	left: 10px;
+	font-size: 24px;
+	color: #6a6c6f;
+`;
+
+export const CardIco = styled(BiIdCard)`
+	position: absolute;
+	top: 28px;
+	left: 10px;
+	font-size: 24px;
+	color: #6a6c6f;
+`;
+
+export const LockIco = styled(BiLock)`
+	position: absolute;
+	top: 28px;
+	left: 10px;
+	font-size: 24px;
+	color: #6a6c6f;
+`;
+
+export const MailIco = styled(BiEnvelope)`
 	position: absolute;
 	top: 28px;
 	left: 10px;

@@ -1,6 +1,7 @@
 import {
 	CentralizerContainer,
 	ElementsContainer,
+	InputContainer,
 	StyledLink,
 } from "../styled/CommonStyles";
 import { useContext, useState, useEffect } from "react";
@@ -9,6 +10,16 @@ import { AuthContext } from "../context/authentication.jsx";
 import { redirectHomeIfToken, submitSignup } from "../utils/index.js";
 import { DataContext } from "../context/data.jsx";
 import { Alert } from "../components/Alert.jsx";
+import {
+	AltLockIco,
+	CardIco,
+	CheckIco,
+	LockIco,
+	MailIco,
+	NameIco,
+	PhoneIco,
+	UserIco,
+} from "../styled/Icons.js";
 
 const DefaultSignUp = {
 	name: "",
@@ -39,68 +50,90 @@ export default function SignUp() {
 						await submitSignup(signupData, DataInfo, navigate);
 					}}
 				>
-					<input
-						placeholder='Nome completo'
-						type='text'
-						autoComplete='name'
-						onChange={(e) =>
-							setSignupData({ ...signupData, name: e.target.value })
-						}
-						required
-					/>
-					<input
-						placeholder='Telefone'
-						type='text'
-						autoComplete='tel'
-						value={formatarTelefone(signupData.number)}
-						onChange={(e) =>
-							setSignupData({
-								...signupData,
-								number: formatarTelefone(e.target.value),
-							})
-						}
-						required
-					/>
-					<input
-						placeholder='CPF'
-						type='text'
-						autoComplete='off'
-						value={formatarCPF(signupData.cpf)}
-						onChange={(e) =>
-							setSignupData({ ...signupData, cpf: formatarCPF(e.target.value) })
-						}
-						required
-					/>
-					<input
-						placeholder='E-mail'
-						type='email'
-						autoComplete='email'
-						onChange={(e) =>
-							setSignupData({ ...signupData, email: e.target.value })
-						}
-						required
-					/>
-					<input
-						placeholder='Senha'
-						type='password'
-						autoComplete='new-password'
-						onChange={(e) =>
-							setSignupData({ ...signupData, password: e.target.value })
-						}
-						required
-					/>
-					<input
-						placeholder='Confirme sua senha'
-						type='password'
-						autoComplete='off'
-						onChange={(e) =>
-							setSignupData({
-								...signupData,
-								confirmPassword: e.target.value,
-							})
-						}
-						required
-					/>
+					<InputContainer>
+						<NameIco />
+						<input
+							placeholder='Nome completo'
+							type='text'
+							autoComplete='name'
+							onChange={(e) =>
+								setSignupData({ ...signupData, name: e.target.value })
+							}
+							required
+						/>
+					</InputContainer>
+					<InputContainer>
+						<PhoneIco />
+						<input
+							placeholder='Telefone'
+							type='text'
+							autoComplete='tel'
+							value={formatarTelefone(signupData.number)}
+							onChange={(e) =>
+								setSignupData({
+									...signupData,
+									number: formatarTelefone(e.target.value),
+								})
+							}
+							required
+						/>
+					</InputContainer>
+					<InputContainer>
+						<CardIco />
+						<input
+							placeholder='CPF'
+							type='text'
+							autoComplete='off'
+							value={formatarCPF(signupData.cpf)}
+							onChange={(e) =>
+								setSignupData({
+									...signupData,
+									cpf: formatarCPF(e.target.value),
+								})
+							}
+							required
+						/>
+					</InputContainer>
+					<InputContainer>
+						<MailIco />
+						<input
+							placeholder='E-mail'
+							type='email'
+							autoComplete='email'
+							onChange={(e) =>
+								setSignupData({ ...signupData, email: e.target.value })
+							}
+							required
+						/>
+					</InputContainer>
+					<InputContainer>
+						<LockIco />
+						<input
+							placeholder='Senha'
+							type='password'
+							autoComplete='new-password'
+							onChange={(e) =>
+								setSignupData({ ...signupData, password: e.target.value })
+							}
+							required
+						/>
+					</InputContainer>
+					<InputContainer>
+						<AltLockIco />
+						<CheckIco />
+						<input
+							placeholder='Confirme sua senha'
+							type='password'
+							autoComplete='off'
+							onChange={(e) =>
+								setSignupData({
+									...signupData,
+									confirmPassword: e.target.value,
+								})
+							}
+							required
+						/>
+					</InputContainer>
 					<button type='submit'>CADASTRAR</button>
 				</form>
 				<StyledLink to={"/"}>
