@@ -7,3 +7,6 @@ export * from "./NewCatWindow.jsx";
 export * from "./StringToTags.jsx";
 export * from "./CatsToGrid.jsx";
 export * from "./ArrayToTags.jsx";
+export * from "./UserCatCard.jsx";
+export * from "./UserCatsList.jsx";
+export * from "./UserProfileData.jsx";

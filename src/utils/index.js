@@ -10,3 +10,5 @@ export * from "./getUserLocalStorage.js";
 export * from "./isValidImage.js";
 export * from "./getPopularTagsList.js";
 export * from "./getAllCatsList.js";
+export * from "./formatarCPF.js";
+export * from "./formatarTelefone.js";

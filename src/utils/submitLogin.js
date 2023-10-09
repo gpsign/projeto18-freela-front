@@ -25,7 +25,7 @@ export async function submitLogin(loginInputs, DataInfo, AuthInfo, navigate) {
 		localStorage.setItem("login", JSON.stringify(local));
 
 		setUserPhoto(photo);
-		setUser(res);
+		setUser(user);
 		setToken(token);
 		setConfig({
 			headers: {

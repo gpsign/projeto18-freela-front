@@ -21,6 +21,7 @@ export const DataProvider = ({ children }) => {
 	const [tagsList, setTagsList] = useState([]);
 	const [searchValue, setSearchValue] = useState("");
 	const [catPage, setCatPage] = useState();
+	const [showEditPhoto, setShowEditPhoto] = useState(true);
 
 	return (
 		<DataContext.Provider
@@ -45,6 +46,8 @@ export const DataProvider = ({ children }) => {
 				setUser,
 				userPhoto,
 				setUserPhoto,
+				showEditPhoto,
+				setShowEditPhoto,
 			}}
 		>
 			{children}

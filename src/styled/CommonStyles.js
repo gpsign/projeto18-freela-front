@@ -141,7 +141,7 @@ export const StyledLink = styled(Link)`
 `;
 
 export const InputContainer = styled.div`
-	width: 100%;
+	width: fit-content;
 	position: relative;
 `;
 

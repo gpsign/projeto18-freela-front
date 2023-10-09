@@ -7,7 +7,12 @@ import {
 import { useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/authentication.jsx";
-import { redirectHomeIfToken, submitSignup } from "../utils/index.js";
+import {
+	redirectHomeIfToken,
+	submitSignup,
+	formatarCPF,
+	formatarTelefone,
+} from "../utils/index.js";
 import { DataContext } from "../context/data.jsx";
 import { Alert } from "../components/Alert.jsx";
 import {
@@ -140,21 +145,3 @@ export function SignUp() {
 		</CentralizerContainer>
 	);
 }
-
-const formatarCPF = (value) => {
-	return value
-		.replace(/\D/g, "")
-		.replace(/(\d{3})(\d)/, "$1.$2")
-		.replace(/(\d{3})(\d)/, "$1.$2")
-		.replace(/(\d{3})(\d{1,2})/, "$1-$2")
-		.replace(/(-\d{2})\d+?$/, "$1");
-};
-
-const formatarTelefone = (value) => {
-	if (value.length > 15) return value.substring(0, 15);
-
-	return value
-		.replace(/\D/g, "")
-		.replace(/(\d{2})(\d)/, "($1) $2")
-		.replace(/(\d)(\d{4})$/, "$1-$2");
-};

@@ -8,11 +8,116 @@ import {
 	BiCheck,
 	BiPhone,
 	BiEnvelope,
+	BiPencil,
+	BiTrash,
 } from "react-icons/bi";
 import { TbLockCheck, TbLock } from "react-icons/tb";
-import { IoMdArrowRoundBack } from "react-icons/io";
-import { BsPhone } from "react-icons/bs";
+import { IoMdArrowRoundBack, IoMdClose } from "react-icons/io";
+import { BsPhone, BsCheckLg } from "react-icons/bs";
 import { AiOutlineMail } from "react-icons/ai";
+
+export const EditPhotoIco = styled(BiPencil)`
+	font-size: 26px;
+	transition: all 0.2s;
+`;
+
+export const EditCatIco = styled(BiPencil)`
+	position: absolute;
+	top: 5px;
+	right: 35px;
+	color: black;
+	font-size: 26px;
+	padding: 4px;
+	border-radius: 100%;
+
+	&:hover {
+		background-color: #cbcdd0;
+		cursor: pointer;
+		filter: brightness(1.06);
+	}
+
+	&:active {
+		transform: translateY(1px);
+		transition: transform 0.1s ease-out;
+	}
+`;
+
+export const TrashIco = styled(BiTrash)`
+	position: absolute;
+	top: 5px;
+	right: 5px;
+	color: black;
+	font-size: 26px;
+	padding: 4px;
+	border-radius: 100%;
+
+	&:hover {
+		background-color: #ffa5a5;
+		cursor: pointer;
+		filter: brightness(1.06);
+	}
+
+	&:active {
+		transform: translateY(1px);
+		transition: transform 0.1s ease-out;
+	}
+`;
+
+export const CancelIco = styled(IoMdClose)`
+	color: black;
+	font-size: 28px;
+	padding: 4px;
+	border-radius: 100%;
+	background-color: #ffa5a5;
+	margin-left: -4px;
+
+	&:hover {
+		cursor: pointer;
+		filter: brightness(1.06);
+	}
+
+	&:active {
+		transform: translateY(1px);
+		transition: transform 0.1s ease-out;
+	}
+`;
+
+export const ConfirmIco = styled(BsCheckLg)`
+	color: black;
+	font-size: 28px;
+	padding: 4px;
+	border-radius: 100%;
+	background-color: #a6ecbb;
+	margin-left: -4px;
+
+	&:hover {
+		cursor: pointer;
+		filter: brightness(1.06);
+	}
+
+	&:active {
+		transform: translateY(1px);
+		transition: transform 0.1s ease-out;
+	}
+`;
+
+export const EditIco = styled(BiPencil)`
+	color: #6a6c6f;
+	font-size: 28px;
+	padding: 4px;
+	border-radius: 100%;
+	margin-left: -4px;
+
+	&:hover {
+		cursor: pointer;
+		background-color: #cbcdd0;
+	}
+
+	&:active {
+		transform: translateY(1px);
+		transition: transform 0.1s ease-out;
+	}
+`;
 
 export const BackArrow = styled(IoMdArrowRoundBack)`
 	font-size: 56px;
@@ -40,13 +145,19 @@ export const BackArrow = styled(IoMdArrowRoundBack)`
 	border-radius: 100%;
 `;
 
-export const EmailIco = styled(AiOutlineMail)`
+export const UserEmailIco = styled(AiOutlineMail)`
 	margin-right: 7px;
 	font-size: 32px;
 	color: black;
 `;
 
 export const SmartPhoneIco = styled(BsPhone)`
+	margin-right: 5px;
+	font-size: 32px;
+	color: black;
+`;
+
+export const UserCPFIco = styled(BiIdCard)`
 	margin-right: 5px;
 	font-size: 32px;
 	color: black;

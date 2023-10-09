@@ -2,7 +2,11 @@ import { useContext, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Alert, ArrayToTags, Header } from "../components/index.js";
 import { CentralizerContainer } from "../styled/CommonStyles.js";
-import { BackArrow, EmailIco, SmartPhoneIco } from "../styled/Icons.js";
+import {
+	BackArrow,
+	SmartPhoneIco,
+	UserEmailIco,
+} from "../styled/Icons.js";
 import { DataContext } from "../context/data.jsx";
 import DefaultPic from "/images/Default.jpg";
 import {
@@ -25,7 +29,7 @@ export function Cat() {
 	const navigate = useNavigate();
 
 	const DataInfo = useContext(DataContext);
-	const { catPage } = DataInfo;
+	const { catPage, setCatPage } = DataInfo;
 
 	useEffect(() => {
 		//!catPage && getCatData(catId, DataInfo, AuthInfo);
@@ -36,7 +40,12 @@ export function Cat() {
 			<Alert />
 			<Header />
 			<CentralizerContainer>
-				<BackArrow onClick={() => navigate("/home")} />
+				<BackArrow
+					onClick={() => {
+						setCatPage(undefined);
+						navigate("/home");
+					}}
+				/>
 				<CatContainer>
 					<CatPhoto src={catPage.url} />
 					<CatData>
@@ -60,7 +69,7 @@ export function Cat() {
 							{catPage.owner.phone}
 						</Contact>
 						<Contact>
-							<EmailIco />
+							<UserEmailIco />
 							{catPage.owner.email}
 						</Contact>
 					</OwnerContact>
