@@ -1,4 +1,4 @@
-import { Alert, Header } from "../components/index.js";
+import { Alert, Header, NewCatWindow } from "../components/index.js";
 import { CentralizerContainer } from "../styled/CommonStyles.js";
 import { DataContainer } from "../styled/Profile.js";
 import { UserProfileData, UserCatsList } from "../components/index.js";
@@ -7,6 +7,7 @@ import { EditPhotoWindow } from "../components/EditPhotoWindow.jsx";
 export function Profile() {
 	return (
 		<>
+			<NewCatWindow />
 			<Alert />
 			<Header />
 			<EditPhotoWindow />

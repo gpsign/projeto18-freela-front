@@ -55,7 +55,7 @@ export const LeftBox = styled.div`
 `;
 
 export const Filter = styled.span`
-	border-radius: 8px;
+	border-radius: 4px;
 	height: 100%;
 
 	font-size: 18px;
@@ -106,8 +106,11 @@ export const TagsTitle = styled.h2`
 `;
 
 export const Division = styled.div`
-	width: 100%;
+	width: 290px;
 	height: 1px;
+	margin-left: -15px;
+	margin-top: -1px;
+	margin-bottom: -1px;
 	background: rgb(83, 83, 83);
 	background: radial-gradient(
 		circle,
@@ -129,13 +132,14 @@ export const PopularTags = styled.ul`
 `;
 
 export const TagLine = styled.li`
-	width: 100%;
+	width: 300px;
+	margin-left: -20px;
 	height: fit-content;
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	padding: 9px;
-	border-radius: 8px;
+	padding: 10px 20px 10px 20px;
+	border-radius: 0px;
 
 	& > p {
 		font-size: 14px;
@@ -148,7 +152,7 @@ export const TagLine = styled.li`
 	}
 
 	&:active {
-		transform: scale(0.95);
+		transform: scale(0.99);
 		transition: transform 0.1s;
 	}
 `;

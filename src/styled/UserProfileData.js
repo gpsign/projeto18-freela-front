@@ -68,6 +68,8 @@ export const UserData = styled.div`
 	display: flex;
 	flex-direction: column;
 
+	margin-bottom: 30px;
+
 	color: black;
 	font-size: 22px;
 	display: inline;

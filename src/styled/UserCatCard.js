@@ -103,7 +103,7 @@ export const Switch = styled.button`
 
 	background-color: ${({ $on }) => ($on === "true" ? "#a6ecbb" : "#ffa5a5")};
 
-	border: 2px solid white;
+	border: 2px solid rgb(100,100,100);
 	border-radius: 30px;
 	width: 70px;
 	height: 34px;
