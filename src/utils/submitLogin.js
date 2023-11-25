@@ -1,14 +1,22 @@
 import axios from "axios";
 import DefaultPhoto from "/images/Default.jpg";
 
-export async function submitLogin(loginInputs, DataInfo, AuthInfo, navigate) {
+export async function submitLogin(
+	loginInputs,
+	DataInfo,
+	AuthInfo,
+	navigate,
+	setLoading
+) {
 	const VITE_API_URL = import.meta.env.VITE_API_URL;
 	const { setAlert, setUser, setUserPhoto } = DataInfo;
 	const { setConfig, setToken } = AuthInfo;
 
 	try {
+		setLoading(true);
+
 		const res = await axios.post(`${VITE_API_URL}/sign-in`, loginInputs);
-		console.log(res);
+
 		const loginRes = res.data;
 		const token = loginRes.token;
 		const photo = loginRes.user.url ? loginRes.user.url : DefaultPhoto;
@@ -33,9 +41,11 @@ export async function submitLogin(loginInputs, DataInfo, AuthInfo, navigate) {
 			},
 		});
 
+		setLoading(false);
 		navigate("/home");
 	} catch (err) {
 		console.log(err);
+		setLoading(false);
 		if (err.code === "ERR_NETWORK") {
 			setAlert({ message: "Erro de Conexão", show: true });
 		}

@@ -113,6 +113,15 @@ export const FormContainer = styled.div`
 			transform: translateY(1px);
 			transition: transform 0.1s ease-out;
 		}
+
+		&:disabled {
+			filter: grayscale();
+		}
+		&:disabled:hover,
+		&:disabled:active {
+			cursor: default;
+			transform: none;
+		}
 	}
 
 	input:-webkit-autofill,

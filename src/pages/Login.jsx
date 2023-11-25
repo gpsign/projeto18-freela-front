@@ -13,6 +13,7 @@ import { MailIco, LockIco } from "../styled/Icons.js";
 
 export function Login() {
 	const [loginInputs, setLoginInputs] = useState({ email: "", password: "" });
+	const [loading, setLoading] = useState(false);
 	const DataInfo = useContext(DataContext);
 	const AuthInfo = useContext(AuthContext);
 	const navigate = useNavigate();
@@ -23,7 +24,7 @@ export function Login() {
 
 	async function submit(e) {
 		e.preventDefault();
-		await submitLogin(loginInputs, DataInfo, AuthInfo, navigate);
+		await submitLogin(loginInputs, DataInfo, AuthInfo, navigate, setLoading);
 	}
 
 	return (
@@ -57,7 +58,9 @@ export function Login() {
 								required
 							/>
 						</InputContainer>
-						<button type='submit'>ENTRAR</button>
+						<button disabled={loading} type='submit'>
+							{loading ? "AGUARDE" : "ENTRAR"}
+						</button>
 					</form>
 					<StyledLink to={"/signup"}>
 						Não tem uma conta? <span className='underline'>Cadastre-se!</span>
